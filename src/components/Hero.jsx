@@ -16,7 +16,6 @@ const Hero = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Role rotation
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentRole((prev) => (prev + 1) % roles.length);
@@ -24,7 +23,6 @@ const Hero = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Navbar scroll background
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
@@ -33,14 +31,12 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-screen overflow-hidden bg-[url('/blue-background.png')] bg-cover bg-center text-white">
-      {/* Navigation */}
       <nav
         className={`fixed top-0 left-0 w-full z-50 shadow-md transition-colors duration-500 ${
           scrolled ? "bg-blue-600 backdrop-blur-md" : "bg-transparent"
         }`}
       >
         <div className="flex justify-between items-center py-4 md:py-5 max-w-6xl mx-auto px-4 sm:px-6">
-          {/* LOGO */}
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight">
             <span className="bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
               Mamudou
@@ -50,7 +46,6 @@ const Hero = () => {
             </span>
           </h1>
 
-          {/* DESKTOP + TABLET MENU */}
           <ul className="hidden md:flex gap-6 text-sm font-medium uppercase">
             {[
               { id: "about", label: "About Me" },
@@ -67,7 +62,6 @@ const Hero = () => {
             ))}
           </ul>
 
-          {/* HAMBURGER MENU */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="md:hidden text-3xl"
@@ -77,7 +71,6 @@ const Hero = () => {
           </button>
         </div>
 
-        {/* MOBILE MENU */}
         {menuOpen && (
           <motion.div
             initial={{ opacity: 0, y: -10 }}
@@ -104,9 +97,7 @@ const Hero = () => {
         )}
       </nav>
 
-      {/* ================= HERO CONTENT ================= */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col-reverse md:flex-row items-center gap-10 lg:gap-16 pt-28 sm:pt-32 pb-20 sm:pb-28">
-        {/* LEFT TEXT */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
@@ -144,14 +135,12 @@ const Hero = () => {
           </div>
         </motion.div>
 
-        {/* RIGHT IMAGE */}
         <motion.div
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
           className="md:w-1/2 flex justify-center relative"
         >
-          {/* Blob */}
           <motion.img
             src="/images.png"
             alt="Decorative blob background"
@@ -162,7 +151,6 @@ const Hero = () => {
               opacity-70 w-[180px] sm:w-[240px] lg:w-[400px]"
           />
 
-          {/* Floating Portrait */}
           <motion.div
             animate={{ y: [0, -12, 0] }}
             transition={{ duration: 4, repeat: Infinity }}
