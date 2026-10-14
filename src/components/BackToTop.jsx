@@ -1,44 +1,33 @@
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { HiArrowUp } from "react-icons/hi";
 
 const BackToTop = () => {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const toggleVisibility = () => {
-      setVisible(window.scrollY > 400);
-    };
-
-    window.addEventListener("scroll", toggleVisibility);
+    const toggleVisibility = () => setVisible(window.scrollY > 600);
+    window.addEventListener("scroll", toggleVisibility, { passive: true });
     return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
-
   return (
-    visible && (
-      <motion.button
-        onClick={scrollToTop}
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.3 }}
-        className="
-          fixed bottom-6 right-6 z-50
-          bg-blue-600 hover:bg-blue-700
-          text-white p-4 rounded-full shadow-lg
-          flex items-center justify-center
-        "
-      >
-        <HiArrowUp className="text-2xl" />
-      </motion.button>
-    )
+    <AnimatePresence>
+      {visible && (
+        <motion.button
+          type="button"
+          aria-label="Back to top"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.8 }}
+          transition={{ duration: 0.2 }}
+          className="fixed right-5 bottom-5 z-40 flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-ink-800/90 text-xl text-white shadow-lg backdrop-blur transition-colors hover:bg-violet-600"
+        >
+          <HiArrowUp />
+        </motion.button>
+      )}
+    </AnimatePresence>
   );
 };
 

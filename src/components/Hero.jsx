@@ -1,170 +1,133 @@
-import { motion } from "framer-motion";
-import { FiMail } from "react-icons/fi";
-import { HiMenuAlt3, HiX } from "react-icons/hi";
 import { useEffect, useState } from "react";
-
-const roles = [
-  "Frontend Developer",
-  "Backend Developer (Strapi & SQL)",
-  "Full-Stack Architect in Progress",
-  "Instructor at JCC",
-  "Productivity & Microsoft Office Enthusiast",
-];
+import { AnimatePresence, motion } from "framer-motion";
+import { FiArrowRight, FiMapPin } from "react-icons/fi";
+import { profile, roles, socials } from "../data/portfolio";
 
 const Hero = () => {
   const [currentRole, setCurrentRole] = useState(0);
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentRole((prev) => (prev + 1) % roles.length);
-    }, 2500);
+    }, 2800);
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
-    <section className="relative min-h-screen overflow-hidden bg-[url('/blue-background.png')] bg-cover bg-center text-white">
-      <nav
-        className={`fixed top-0 left-0 w-full z-50 shadow-md transition-colors duration-500 ${
-          scrolled ? "bg-blue-600 backdrop-blur-md" : "bg-transparent"
-        }`}
-      >
-        <div className="flex justify-between items-center py-4 md:py-5 max-w-6xl mx-auto px-4 sm:px-6">
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight">
-            <span className="bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
-              Mamudou
-            </span>{" "}
-            <span className="bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
-              Saho
+    <section
+      id="top"
+      className="relative isolate flex min-h-svh items-center overflow-hidden bg-grid"
+    >
+      {/* Ambient glow */}
+      <div
+        aria-hidden="true"
+        className="absolute -top-40 left-1/2 -z-10 h-[36rem] w-[36rem] -translate-x-1/2 rounded-full bg-violet-600/25 blur-[120px]"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-b from-transparent to-ink-950"
+      />
+
+      <div className="mx-auto grid w-full max-w-6xl items-center gap-12 px-4 pt-24 pb-16 sm:px-6 sm:pt-28 sm:pb-20 md:grid-cols-[1.2fr_1fr] lg:gap-16">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="order-2 text-center md:order-1 md:text-left"
+        >
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1 text-xs font-medium text-emerald-300">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75 motion-reduce:hidden" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
             </span>
+            Available for freelance & full-time roles
+          </div>
+
+          <h1 className="font-display text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl">
+            Hi, I&apos;m {profile.name.split(" ")[0]}.
+            <br />
+            <span className="text-gradient">I build for the web.</span>
           </h1>
 
-          <ul className="hidden md:flex gap-6 text-sm font-medium uppercase">
-            {[
-              { id: "about", label: "About Me" },
-              { id: "services", label: "Services" },
-              { id: "projects", label: "Portfolio" },
-              { id: "techstack", label: "Tech Stack" },
-              { id: "contact", label: "Contact Me" },
-            ].map(({ id, label }) => (
-              <li key={id}>
-                <a href={`#${id}`} className="hover:text-yellow-300 transition">
-                  {label}
-                </a>
-              </li>
-            ))}
-          </ul>
-
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden text-3xl"
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-          >
-            {menuOpen ? <HiX /> : <HiMenuAlt3 />}
-          </button>
-        </div>
-
-        {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="md:hidden bg-blue-700 px-6 py-6 space-y-5 text-center uppercase font-semibold"
-          >
-            {[
-              { id: "about", label: "About Me" },
-              { id: "services", label: "Services" },
-              { id: "projects", label: "Portfolio" },
-              { id: "techstack", label: "Tech Stack" },
-              { id: "contact", label: "Contact Me" },
-            ].map(({ id, label }) => (
-              <a
-                key={id}
-                href={`#${id}`}
-                onClick={() => setMenuOpen(false)}
-                className="block hover:text-yellow-300 transition"
+          <p className="mt-5 h-8 text-lg font-medium text-zinc-200 sm:text-xl" aria-live="polite">
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={roles[currentRole]}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.3 }}
+                className="inline-block"
               >
-                {label}
-              </a>
-            ))}
-          </motion.div>
-        )}
-      </nav>
-
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col-reverse md:flex-row items-center gap-10 lg:gap-16 pt-28 sm:pt-32 pb-20 sm:pb-28">
-        <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          className="md:w-1/2 text-center md:text-left"
-        >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4 tracking-tight">
-            Crafting Web Experiences & Teaching Code
-          </h2>
-
-          <p className="text-lg sm:text-xl mb-4 text-blue-400 font-semibold">
-            {roles[currentRole]}
+                {roles[currentRole]}
+              </motion.span>
+            </AnimatePresence>
           </p>
 
-          <p className="text-base sm:text-lg text-gray-300 mb-6 leading-relaxed max-w-xl mx-auto md:mx-0">
-            Building responsive UIs, exploring backend with Strapi and SQL,
-            managing databases, and mentoring future developers at JCC.
+          <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-zinc-400 sm:text-lg md:mx-0">
+            I craft responsive, accessible interfaces with React and Tailwind,
+            build APIs with Strapi and SQL, and teach the next generation of
+            developers at JCC.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row md:justify-start">
             <a
-              href="#services"
-              className="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-md text-white font-medium shadow-md transition-transform hover:scale-105"
+              href="#projects"
+              className="group inline-flex items-center justify-center gap-2 rounded-full bg-violet-600 px-6 py-3 font-semibold text-white shadow-lg shadow-violet-600/25 transition hover:bg-violet-500"
             >
-              Get Started →
+              View my work
+              <FiArrowRight className="transition-transform group-hover:translate-x-1" />
             </a>
-
             <a
               href="#contact"
-              className="inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-6 py-3 rounded-md font-medium shadow-md transition-transform hover:scale-105"
+              className="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-3 font-semibold text-white transition hover:border-white/40 hover:bg-white/5"
             >
-              <FiMail className="text-xl" />
-              Contact Me
+              Get in touch
             </a>
+          </div>
+
+          <div className="mt-10 flex items-center justify-center gap-5 text-zinc-500 md:justify-start">
+            <span className="inline-flex items-center gap-1.5 text-sm">
+              <FiMapPin /> {profile.location}
+            </span>
+            <span className="h-4 w-px bg-white/10" aria-hidden="true" />
+            {socials.slice(0, 3).map(({ label, href, icon: Icon }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="text-xl transition hover:text-white"
+              >
+                <Icon />
+              </a>
+            ))}
           </div>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          className="md:w-1/2 flex justify-center relative"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7, delay: 0.1 }}
+          className="order-1 flex justify-center md:order-2"
         >
-          <motion.img
-            src="/images.png"
-            alt="Decorative blob background"
-            animate={{ scale: [1, 1.05, 1] }}
-            transition={{ duration: 6, repeat: Infinity }}
-            className="absolute top-1/2 left-1/2 
-              -translate-x-1/2 -translate-y-1/2 
-              opacity-70 w-[180px] sm:w-[240px] lg:w-[400px]"
-          />
-
-          <motion.div
-            animate={{ y: [0, -12, 0] }}
-            transition={{ duration: 4, repeat: Infinity }}
-            className="relative z-10"
-          >
-            <div className="absolute inset-0 rounded-full blur-2xl bg-blue-500 opacity-30 scale-110" />
-
-            <img
-              src="/mamudou1.png"
-              alt="Mamudou Saho portrait"
-              className="relative rounded-full object-cover shadow-2xl 
-                w-44 h-44 sm:w-56 sm:h-56 lg:w-90 lg:h-90"
+          <div className="relative">
+            <div
+              aria-hidden="true"
+              className="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-violet-500 via-fuchsia-500 to-amber-300 opacity-60 blur-2xl"
             />
-          </motion.div>
+            <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-b from-zinc-100 to-zinc-300">
+              <img
+                src={profile.photo}
+                alt={`Portrait of ${profile.name}`}
+                width="433"
+                height="577"
+                fetchPriority="high"
+                className="h-60 w-48 object-cover object-[70%_center] sm:h-96 sm:w-80"
+              />
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>

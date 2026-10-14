@@ -1,186 +1,185 @@
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { FiMail, FiMapPin, FiPhone, FiSend } from "react-icons/fi";
+import { profile } from "../data/portfolio";
+import SectionHeading from "./SectionHeading";
+
+const FORM_ENDPOINT = "https://formspree.io/f/xjkneerw";
+
+const contactItems = [
+  { icon: FiMail, label: "Email", value: profile.email, href: `mailto:${profile.email}` },
+  { icon: FiPhone, label: "Phone", value: profile.phone, href: `tel:${profile.phoneHref}` },
+  { icon: FiMapPin, label: "Location", value: profile.location },
+];
+
+const inputClass =
+  "w-full rounded-xl border border-white/10 bg-ink-950 px-4 py-3 text-white placeholder-zinc-500 transition focus:border-violet-400 focus:outline-none focus:ring-2 focus:ring-violet-400/30";
 
 const Contact = () => {
-  const [status, setStatus] = useState(null);
+  // idle | sending | success | error
+  const [status, setStatus] = useState("idle");
 
-  // Auto-hide after 3 seconds
   useEffect(() => {
-    if (status) {
-      const timer = setTimeout(() => setStatus(null), 3000);
+    if (status === "success" || status === "error") {
+      const timer = setTimeout(() => setStatus("idle"), 5000);
       return () => clearTimeout(timer);
     }
   }, [status]);
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    setStatus("sending");
+    try {
+      const response = await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" },
+      });
+      if (!response.ok) throw new Error(`Request failed: ${response.status}`);
+      setStatus("success");
+      form.reset();
+    } catch {
+      setStatus("error");
+    }
+  };
+
   return (
-    <motion.section
-      id="contact"
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className="py-20 px-6 bg-gray-950 text-white relative"
-    >
-      {/* Background gradient glow */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 blur-3xl"></div>
+    <section id="contact" className="relative isolate px-4 py-24 sm:px-6 sm:py-32">
+      <div
+        aria-hidden="true"
+        className="absolute bottom-0 left-1/2 -z-10 h-80 w-[40rem] max-w-full -translate-x-1/2 rounded-full bg-violet-600/15 blur-[120px]"
+      />
 
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 relative z-10">
-        {/* LEFT SIDE TEXT */}
-        <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="space-y-6 flex flex-col justify-center"
-        >
-          <h2 className="text-5xl font-extrabold md:text-left text-center">
-            Let’s Work Together
-          </h2>
+      <div className="mx-auto max-w-6xl">
+        <SectionHeading
+          eyebrow="Contact"
+          title="Let's work together"
+          description="Have a project in mind, a role to fill or just want to say hi? My inbox is always open."
+        />
 
-          <p className="text-lg text-gray-300 md:text-left text-center leading-relaxed">
-            Have a project in mind? Want to collaborate? I’m always open to
-            exciting ideas and new opportunities.
-          </p>
-
-          <div className="space-y-4 text-gray-200 text-lg">
-            <div>
-              <span className="font-semibold text-white">Phone :</span>
-              <br />
-              +220 5895636
-            </div>
-
-            <div>
-              <span className="font-semibold text-white">Email :</span>
-              <br />
-              sahomamudou2003@gmail.com
-            </div>
-
-            <div>
-              <span className="font-semibold text-white">Location :</span>
-              <br />
-              Lamin, The Gambia
-            </div>
-          </div>
-        </motion.div>
-
-        {/* RIGHT SIDE — GLASSMORPHISM FORM */}
-        <motion.form
-          initial={{ opacity: 0, x: 40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="
-            space-y-6 p-8 rounded-2xl
-            bg-white/10 backdrop-blur-xl
-            border border-white/20
-            shadow-2xl
-          "
-          action="https://formspree.io/f/xjkneerw"
-          method="POST"
-          onSubmit={async (e) => {
-            e.preventDefault();
-            const form = e.target;
-            const data = new FormData(form);
-
-            try {
-              const response = await fetch(form.action, {
-                method: form.method,
-                body: data,
-                headers: { Accept: "application/json" },
-              });
-
-              if (response.ok) {
-                setStatus("SUCCESS");
-                form.reset();
-              } else {
-                setStatus("ERROR");
-              }
-            } catch (err) {
-              setStatus("ERROR");
-            }
-          }}
-        >
-          <h3 className="text-2xl font-semibold text-center mb-4">
-            Send Me a Message
-          </h3>
-
-          {/* Input styles */}
-          <input
-            type="text"
-            name="name"
-            placeholder="Your Name*"
-            required
-            className="
-              w-full px-4 py-3 rounded-lg bg-white/10
-              border border-white/20 text-white
-              placeholder-gray-300
-              focus:ring-2 focus:ring-blue-400 focus:outline-none
-            "
-          />
-
-          <input
-            type="email"
-            name="email"
-            placeholder="Email Address*"
-            required
-            className="
-              w-full px-4 py-3 rounded-lg bg-white/10
-              border border-white/20 text-white
-              placeholder-gray-300
-              focus:ring-2 focus:ring-blue-400 focus:outline-none
-            "
-          />
-
-          <textarea
-            name="message"
-            rows="5"
-            placeholder="Your Message"
-            required
-            className="
-              w-full px-4 py-3 rounded-lg bg-white/10
-              border border-white/20 text-white
-              placeholder-gray-300
-              focus:ring-2 focus:ring-blue-400 focus:outline-none
-            "
-          ></textarea>
-
-          {/* Submit Button */}
-          <button
-            type="submit"
-            className="
-              w-full py-3 rounded-lg font-semibold text-white
-              bg-gradient-to-r from-blue-600 to-purple-600
-              hover:opacity-90 transition-all duration-300 shadow-lg
-            "
+        <div className="grid gap-8 lg:grid-cols-[1fr_1.3fr]">
+          <motion.ul
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.5 }}
+            className="space-y-4"
           >
-            Send Message
-          </button>
+            {contactItems.map(({ icon: Icon, label, value, href }) => {
+              const content = (
+                <>
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-violet-500/10 text-xl text-violet-300">
+                    <Icon />
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block text-sm text-zinc-500">{label}</span>
+                    <span className="block truncate font-medium text-white">{value}</span>
+                  </span>
+                </>
+              );
+              const cardClass =
+                "flex items-center gap-4 rounded-2xl border border-white/10 bg-ink-900 p-5";
+              return (
+                <li key={label}>
+                  {href ? (
+                    <a href={href} className={`${cardClass} transition hover:border-violet-400/40`}>
+                      {content}
+                    </a>
+                  ) : (
+                    <div className={cardClass}>{content}</div>
+                  )}
+                </li>
+              );
+            })}
+          </motion.ul>
 
-          {/* ALERT BOXES */}
-          <AnimatePresence>
-            {status && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                className={`
-                  mt-4 p-4 rounded-lg text-center text-base font-medium
-                  ${
-                    status === "SUCCESS"
-                      ? "bg-green-500/20 text-green-300 border border-green-500/40"
-                      : "bg-red-500/20 text-red-300 border border-red-500/40"
-                  }
-                `}
-              >
-                {status === "SUCCESS"
-                  ? "Message sent successfully! I will get back to you soon."
-                  : "Oops! Something went wrong. Please try again."}
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.form>
+          <motion.form
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            onSubmit={handleSubmit}
+            className="space-y-5 rounded-2xl border border-white/10 bg-ink-900 p-6 sm:p-8"
+          >
+            <div className="grid gap-5 sm:grid-cols-2">
+              <div>
+                <label htmlFor="name" className="mb-2 block text-sm font-medium text-zinc-300">
+                  Name
+                </label>
+                <input
+                  id="name"
+                  type="text"
+                  name="name"
+                  autoComplete="name"
+                  placeholder="Jane Doe"
+                  required
+                  className={inputClass}
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="mb-2 block text-sm font-medium text-zinc-300">
+                  Email
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  name="email"
+                  autoComplete="email"
+                  placeholder="jane@company.com"
+                  required
+                  className={inputClass}
+                />
+              </div>
+            </div>
+
+            <div>
+              <label htmlFor="message" className="mb-2 block text-sm font-medium text-zinc-300">
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                placeholder="Tell me a bit about your project…"
+                required
+                className={`${inputClass} resize-y`}
+              />
+            </div>
+
+            <button
+              type="submit"
+              disabled={status === "sending"}
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-violet-600 py-3.5 font-semibold text-white shadow-lg shadow-violet-600/25 transition hover:bg-violet-500 disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {status === "sending" ? "Sending…" : "Send message"}
+              <FiSend />
+            </button>
+
+            <div aria-live="polite">
+              <AnimatePresence>
+                {(status === "success" || status === "error") && (
+                  <motion.p
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    className={`rounded-xl border p-4 text-center text-sm font-medium ${
+                      status === "success"
+                        ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-300"
+                        : "border-red-500/30 bg-red-500/10 text-red-300"
+                    }`}
+                  >
+                    {status === "success"
+                      ? "Thanks! Your message is on its way — I'll get back to you soon."
+                      : `Something went wrong. Please try again or email me at ${profile.email}.`}
+                  </motion.p>
+                )}
+              </AnimatePresence>
+            </div>
+          </motion.form>
+        </div>
       </div>
-    </motion.section>
+    </section>
   );
 };
 

@@ -1,36 +1,82 @@
 import { motion } from "framer-motion";
+import { FiCode, FiLayers, FiUsers } from "react-icons/fi";
+import SectionHeading from "./SectionHeading";
+
+const highlights = [
+  {
+    icon: FiCode,
+    title: "Clean, modular code",
+    text: "Components and content models that stay maintainable as projects grow.",
+  },
+  {
+    icon: FiLayers,
+    title: "Frontend to backend",
+    text: "From animated React interfaces to Strapi APIs and relational databases.",
+  },
+  {
+    icon: FiUsers,
+    title: "Teacher's mindset",
+    text: "I explain decisions clearly and document my work for the people after me.",
+  },
+];
 
 const About = () => (
-  <motion.section
-    id="about"
-    initial={{ opacity: 0, y: 40 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.6 }}
-    className="py-16 sm:py-20 lg:py-28 px-4 sm:px-6 bg-white text-gray-800"
-  >
-    <div className="max-w-4xl mx-auto text-center">
-      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6">
-        About Me
-      </h2>
+  <section id="about" className="px-4 py-24 sm:px-6 sm:py-32">
+    <div className="mx-auto max-w-6xl">
+      <SectionHeading eyebrow="About me" title="Developer, builder, educator" />
 
-      <p className="text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
-        I'm a frontend developer with a passion for clean UI, animation, and
-        responsive design now expanding into backend architecture with Strapi,
-        TypeScript, and scalable content modeling. I love building systems that
-        are modular, maintainable, and editor-friendly. Whether it's designing
-        animated interfaces or debugging sync logic, I approach every challenge
-        with clarity and curiosity.
-      </p>
+      <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.5 }}
+          className="space-y-5 text-base leading-relaxed text-zinc-400 sm:text-lg"
+        >
+          <p>
+            I&apos;m a frontend developer with a passion for{" "}
+            <span className="text-zinc-100">clean UI, motion and responsive design</span>,
+            now expanding into backend architecture with Strapi, TypeScript and
+            scalable content modelling.
+          </p>
+          <p>
+            I love building systems that are modular, maintainable and
+            editor-friendly. Whether I&apos;m designing animated interfaces or
+            debugging sync logic, I approach every challenge with clarity and
+            curiosity.
+          </p>
+          <p>
+            Alongside client and personal work, I&apos;m an{" "}
+            <span className="text-zinc-100">instructor at JCC</span>, where I
+            teach frontend development and mentor students through real-world
+            projects. My goal: full-stack products that are beautiful, robust
+            and future-proof.
+          </p>
+        </motion.div>
 
-      <p className="text-base sm:text-lg md:text-xl leading-relaxed mt-4 max-w-3xl mx-auto">
-        My goal is to master both frontend and backend development to build
-        full-stack solutions that are beautiful, powerful, and future-proof. I'm
-        currently learning backend architecture, API design, and content
-        modeling and documenting my journey along the way.
-      </p>
+        <ul className="space-y-4">
+          {highlights.map(({ icon: Icon, title, text }, i) => (
+            <motion.li
+              key={title}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="flex gap-4 rounded-2xl border border-white/10 bg-ink-900 p-5"
+            >
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-violet-500/10 text-xl text-violet-300">
+                <Icon />
+              </span>
+              <div>
+                <h3 className="font-semibold text-white">{title}</h3>
+                <p className="mt-1 text-sm leading-relaxed text-zinc-400">{text}</p>
+              </div>
+            </motion.li>
+          ))}
+        </ul>
+      </div>
     </div>
-  </motion.section>
+  </section>
 );
 
 export default About;

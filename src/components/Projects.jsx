@@ -1,183 +1,104 @@
 import { motion } from "framer-motion";
-import { FiExternalLink } from "react-icons/fi";
-import { FaReact } from "react-icons/fa";
-import { SiTailwindcss, SiVite } from "react-icons/si";
-import {
-  MdGridView,
-  MdTouchApp,
-  MdWidgets,
-  MdPhoneAndroid,
-  MdCampaign,
-  MdWeb,
-  MdStarRate,
-  MdMobileFriendly,
-  MdSearch,
-  MdPerson,
-} from "react-icons/md";
+import { FiArrowUpRight, FiGithub } from "react-icons/fi";
+import { projects } from "../data/portfolio";
+import SectionHeading from "./SectionHeading";
 
-const Projects = () => {
-  const projectList = [
-    {
-      title: "Product List UI",
-      description:
-        "A responsive product listing interface built with React, Tailwind CSS, and Vite.",
-      tech: [
-        { name: "React", icon: <FaReact className="text-cyan-500" /> },
-        { name: "Tailwind", icon: <SiTailwindcss className="text-teal-400" /> },
-        { name: "Vite", icon: <SiVite className="text-purple-500" /> },
-      ],
-      features: [
-        {
-          name: "Responsive Grid",
-          icon: <MdGridView className="text-gray-600" />,
-        },
-        {
-          name: "Hover Effects",
-          icon: <MdTouchApp className="text-gray-600" />,
-        },
-        {
-          name: "Reusable Components",
-          icon: <MdWidgets className="text-gray-600" />,
-        },
-      ],
-      link: "https://jcc-product-list-card.vercel.app/",
-      image: "/desktop-design-empty.jpg",
-    },
-    {
-      title: "Browser Extension Landing Page",
-      description: "A fully responsive landing page for a browser extension.",
-      tech: [
-        { name: "React", icon: <FaReact className="text-cyan-500" /> },
-        { name: "Tailwind", icon: <SiTailwindcss className="text-teal-400" /> },
-        { name: "Vite", icon: <SiVite className="text-purple-500" /> },
-      ],
-      features: [
-        {
-          name: "Mobile-First Design",
-          icon: <MdPhoneAndroid className="text-gray-600" />,
-        },
-        {
-          name: "Call-to-Action Sections",
-          icon: <MdCampaign className="text-gray-600" />,
-        },
-        { name: "Modern Layout", icon: <MdWeb className="text-gray-600" /> },
-      ],
-      link: "https://browser-extension-three.vercel.app/",
-      image: "/desktop-design-light.jpg",
-    },
-    {
-      title: "Interactive Rating Card",
-      description:
-        "A fully responsive interactive rating component built with React, Tailwind CSS, and Vite.",
-      tech: [
-        { name: "React", icon: <FaReact className="text-cyan-500" /> },
-        { name: "Tailwind", icon: <SiTailwindcss className="text-teal-400" /> },
-        { name: "Vite", icon: <SiVite className="text-purple-500" /> },
-      ],
-      features: [
-        {
-          name: "Interactive Rating System",
-          icon: <MdStarRate className="text-gray-600" />,
-        },
-        {
-          name: "Responsive Design",
-          icon: <MdMobileFriendly className="text-gray-600" />,
-        },
-        {
-          name: "Reusable Components",
-          icon: <MdWidgets className="text-gray-600" />,
-        },
-      ],
-      link: "https://interactive-rating-card-one.vercel.app/",
-      image: "/interactive-card.png",
-    },
-    {
-      title: "GitHub User Finder",
-      description:
-        "A fully responsive GitHub user search app built with React, Tailwind CSS, and Vite. It fetches data from the GitHub API and displays user profiles with repositories.",
-      tech: [
-        { name: "React", icon: <FaReact className="text-cyan-500" /> },
-        { name: "Tailwind", icon: <SiTailwindcss className="text-teal-400" /> },
-        { name: "Vite", icon: <SiVite className="text-purple-500" /> },
-      ],
-      features: [
-        {
-          name: "Search GitHub Users",
-          icon: <MdSearch className="text-gray-600" />,
-        },
-        {
-          name: "Profile & Repo Display",
-          icon: <MdPerson className="text-gray-600" />,
-        },
-        {
-          name: "Responsive Design",
-          icon: <MdMobileFriendly className="text-gray-600" />,
-        },
-      ],
-      link: "https://github-user-finder-orcin.vercel.app/",
-      image: "/github-user-finder.png",
-    },
-  ];
+const Projects = () => (
+  <section id="projects" className="px-4 py-24 sm:px-6 sm:py-32">
+    <div className="mx-auto max-w-6xl">
+      <SectionHeading
+        eyebrow="Portfolio"
+        title="Selected projects"
+        description="A few things I've built recently. Each one is live — click through and try it."
+      />
 
-  return (
-    <section id="projects" className="py-20 px-6 bg-gray-100">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-12">Projects</h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          {projectList.map((proj, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.2, duration: 0.5 }}
-              className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition"
+      <div className="grid gap-6 md:grid-cols-2">
+        {projects.map((project, i) => (
+          <motion.article
+            key={project.title}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.5, delay: (i % 2) * 0.1 }}
+            className="group flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-ink-900 transition hover:-translate-y-1 hover:border-violet-400/40"
+          >
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              tabIndex={-1}
+              aria-hidden="true"
+              className="relative block aspect-[16/10] overflow-hidden bg-ink-800"
             >
               <img
-                src={proj.image}
-                alt={`${proj.title} preview`}
-                className="w-full h-48 object-cover rounded mb-4"
+                src={project.image}
+                alt=""
+                loading="lazy"
+                decoding="async"
+                className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-105"
               />
-              <h3 className="text-xl font-semibold mb-2">{proj.title}</h3>
-              <p className="text-gray-700 mb-4">{proj.description}</p>
+              <div className="absolute inset-0 bg-gradient-to-t from-ink-900/60 to-transparent" />
+            </a>
 
-              <div className="text-sm text-gray-600 mb-4">
-                <div className="mb-2 font-semibold">🔧 Tech:</div>
-                <ul className="flex flex-wrap gap-4 mb-4">
-                  {proj.tech.map((item, index) => (
-                    <li key={index} className="flex items-center gap-2">
-                      {item.icon}
-                      {item.name}
-                    </li>
-                  ))}
-                </ul>
-                <div className="mb-2 font-semibold">📦 Features:</div>
-                <ul className="flex flex-wrap gap-4">
-                  {proj.features.map((item, index) => (
-                    <li key={index} className="flex items-center gap-2">
-                      {item.icon}
-                      {item.name}
-                    </li>
-                  ))}
-                </ul>
+            <div className="flex flex-1 flex-col p-6">
+              <h3 className="font-display text-xl font-semibold text-white">
+                {project.title}
+              </h3>
+              <p className="mt-2 flex-1 leading-relaxed text-zinc-400">
+                {project.description}
+              </p>
+
+              <ul className="mt-5 flex flex-wrap gap-2" aria-label="Technologies used">
+                {project.tech.map((t) => (
+                  <li
+                    key={t}
+                    className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-zinc-300"
+                  >
+                    {t}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-6 flex items-center gap-5 text-sm font-semibold">
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-violet-300 transition hover:text-violet-200"
+                >
+                  Live demo
+                  <FiArrowUpRight className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <span className="sr-only"> of {project.title} (opens in new tab)</span>
+                </a>
+                {project.repo && (
+                  <a
+                    href={project.repo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-zinc-400 transition hover:text-white"
+                  >
+                    <FiGithub /> Source
+                    <span className="sr-only"> code of {project.title}</span>
+                  </a>
+                )}
               </div>
-
-              <motion.a
-                href={proj.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.05 }}
-                className="inline-flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-all duration-300 shadow-md"
-              >
-                <FiExternalLink className="text-lg" />
-                Live Demo
-              </motion.a>
-            </motion.div>
-          ))}
-        </div>
+            </div>
+          </motion.article>
+        ))}
       </div>
-    </section>
-  );
-};
+
+      <div className="mt-12 text-center">
+        <a
+          href="https://github.com/sahomamudou"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white transition hover:border-white/40 hover:bg-white/5"
+        >
+          <FiGithub /> More on GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+);
 
 export default Projects;

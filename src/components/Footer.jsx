@@ -1,68 +1,33 @@
-import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { profile, socials } from "../data/portfolio";
 
-const Footer = () => {
-  return (
-    <footer className="bg-gray-900 text-white py-6 px-4">
-      <div
-        className="
-          max-w-6xl mx-auto
-          flex flex-col gap-4
-          md:flex-row md:items-center md:justify-between
-        "
-      >
-        <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold whitespace-nowrap text-center md:text-left">
-          <span className="bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
-            Mamudou
-          </span>{" "}
-          <span className="bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
-            Saho
-          </span>
-        </h2>
+const Footer = () => (
+  <footer className="border-t border-white/10 px-4 py-10 sm:px-6">
+    <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 md:flex-row md:justify-between">
+      <a href="#top" className="font-display text-lg font-bold text-white">
+        Mamudou<span className="text-violet-400">.</span>
+      </a>
 
-        <div className="flex justify-center gap-4">
-          <a
-            href="https://www.facebook.com/share/1Z9oWjMSAw/?mibextid=wwXIfr"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-800 hover:bg-blue-600 transition"
-          >
-            <FaFacebook />
-          </a>
+      <ul className="flex gap-3">
+        {socials.map(({ label, href, icon: Icon }) => (
+          <li key={label}>
+            <a
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={label}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-zinc-400 transition hover:border-white/30 hover:text-white"
+            >
+              <Icon />
+            </a>
+          </li>
+        ))}
+      </ul>
 
-          <a
-            href="https://www.instagram.com/mamudousaho84?igsh=cDNia3dlbzhnY283&utm_source=qr"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-800 hover:bg-pink-500 transition"
-          >
-            <FaInstagram />
-          </a>
-
-          <a
-            href="https://www.linkedin.com/in/mamudou-saho-662389280?utm_source=share_via&utm_content=profile&utm_medium=member_ios"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-800 hover:bg-blue-500 transition"
-          >
-            <FaLinkedin />
-          </a>
-
-          <a
-            href="https://x.com/mamudoudaho2003?s=21"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-800 hover:bg-sky-500 transition"
-          >
-            <FaTwitter />
-          </a>
-        </div>
-
-        <p className="text-xs sm:text-sm text-gray-400 text-center md:text-right whitespace-nowrap">
-          © {new Date().getFullYear()} Mamudou Saho. All rights reserved.
-        </p>
-      </div>
-    </footer>
-  );
-};
+      <p className="text-sm text-zinc-500">
+        © {new Date().getFullYear()} {profile.name}. All rights reserved.
+      </p>
+    </div>
+  </footer>
+);
 
 export default Footer;
