@@ -8,16 +8,14 @@ const SectionHeading = ({ eyebrow, title, description }) => (
     transition={{ duration: 0.5 }}
     className="mx-auto mb-12 max-w-2xl text-center sm:mb-16"
   >
-    <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-violet-400">
+    <p className="mb-4 inline-block rounded-full bg-accent-soft px-4 py-1.5 text-xs font-bold tracking-[0.2em] text-accent uppercase">
       {eyebrow}
     </p>
-    <h2 className="font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">
+    <h2 className="font-display text-3xl font-bold tracking-tight text-fg sm:text-4xl lg:text-5xl">
       {title}
     </h2>
     {description && (
-      <p className="mt-4 text-base leading-relaxed text-zinc-400 sm:text-lg">
-        {description}
-      </p>
+      <p className="mt-4 text-base leading-relaxed text-muted sm:text-lg">{description}</p>
     )}
   </motion.div>
 );

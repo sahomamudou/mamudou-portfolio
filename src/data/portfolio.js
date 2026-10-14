@@ -56,24 +56,28 @@ export const socials = [
 export const services = [
   {
     title: "Frontend Development",
+    gradient: "from-violet-500 to-fuchsia-500",
     description:
       "Fast, accessible, responsive interfaces with React, Tailwind CSS and purposeful motion.",
     icon: FiMonitor,
   },
   {
     title: "Backend & APIs",
+    gradient: "from-sky-500 to-cyan-400",
     description:
       "Content models, REST APIs, authentication and admin workflows built with Strapi and Node.js.",
     icon: FiServer,
   },
   {
     title: "Database Design",
+    gradient: "from-emerald-500 to-teal-400",
     description:
       "Relational schemas, efficient SQL queries and well-structured data that scales with the product.",
     icon: FiDatabase,
   },
   {
     title: "Teaching & Mentorship",
+    gradient: "from-amber-500 to-orange-500",
     description:
       "Teaching frontend development at JCC and guiding students through real-world projects.",
     icon: FiBookOpen,
@@ -122,12 +126,12 @@ export const techGroups = [
     title: "Frontend",
     items: [
       { name: "HTML", icon: SiHtml5, color: "#E34F26" },
-      { name: "CSS", icon: SiCss3, color: "#1572B6" },
-      { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
+      { name: "CSS", icon: SiCss3, color: "#2B7FD6" },
+      { name: "JavaScript", icon: SiJavascript, color: "#E8C900" },
       { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
-      { name: "React", icon: SiReact, color: "#61DAFB" },
-      { name: "Next.js", icon: SiNextdotjs, color: "#FFFFFF" },
-      { name: "Tailwind CSS", icon: SiTailwindcss, color: "#38BDF8" },
+      { name: "React", icon: SiReact, color: "#1BB4DB" },
+      { name: "Next.js", icon: SiNextdotjs },
+      { name: "Tailwind CSS", icon: SiTailwindcss, color: "#0EA5E9" },
     ],
   },
   {
@@ -142,8 +146,8 @@ export const techGroups = [
     title: "Tools",
     items: [
       { name: "Git", icon: SiGit, color: "#F05032" },
-      { name: "GitHub", icon: SiGithub, color: "#FFFFFF" },
-      { name: "Vite", icon: SiVite, color: "#A78BFA" },
+      { name: "GitHub", icon: SiGithub },
+      { name: "Vite", icon: SiVite, color: "#9467FF" },
       { name: "Microsoft Office", icon: PiMicrosoftExcelLogo, color: "#21A366" },
     ],
   },

@@ -20,7 +20,7 @@ const Projects = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.5, delay: (i % 2) * 0.1 }}
-            className="group flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-ink-900 transition hover:-translate-y-1 hover:border-violet-400/40"
+            className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-surface shadow-sm transition hover:-translate-y-1 hover:border-accent hover:shadow-xl hover:shadow-violet-500/10"
           >
             <a
               href={project.link}
@@ -28,7 +28,7 @@ const Projects = () => (
               rel="noopener noreferrer"
               tabIndex={-1}
               aria-hidden="true"
-              className="relative block aspect-[16/10] overflow-hidden bg-ink-800"
+              className="relative block aspect-[16/10] overflow-hidden bg-surface-2"
             >
               <img
                 src={project.image}
@@ -37,14 +37,14 @@ const Projects = () => (
                 decoding="async"
                 className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink-900/60 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
             </a>
 
             <div className="flex flex-1 flex-col p-6">
-              <h3 className="font-display text-xl font-semibold text-white">
+              <h3 className="font-display text-xl font-semibold text-fg">
                 {project.title}
               </h3>
-              <p className="mt-2 flex-1 leading-relaxed text-zinc-400">
+              <p className="mt-2 flex-1 leading-relaxed text-muted">
                 {project.description}
               </p>
 
@@ -52,7 +52,7 @@ const Projects = () => (
                 {project.tech.map((t) => (
                   <li
                     key={t}
-                    className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-zinc-300"
+                    className="rounded-full bg-accent-soft px-3 py-1 text-xs font-semibold text-accent"
                   >
                     {t}
                   </li>
@@ -64,7 +64,7 @@ const Projects = () => (
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-violet-300 transition hover:text-violet-200"
+                  className="inline-flex items-center gap-1 text-accent transition hover:opacity-80"
                 >
                   Live demo
                   <FiArrowUpRight className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -75,7 +75,7 @@ const Projects = () => (
                     href={project.repo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-zinc-400 transition hover:text-white"
+                    className="inline-flex items-center gap-1.5 text-muted transition hover:text-accent"
                   >
                     <FiGithub /> Source
                     <span className="sr-only"> code of {project.title}</span>
@@ -92,7 +92,7 @@ const Projects = () => (
           href="https://github.com/sahomamudou"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white transition hover:border-white/40 hover:bg-white/5"
+          className="inline-flex items-center gap-2 rounded-full border border-line px-6 py-3 text-sm font-semibold text-fg transition hover:border-accent hover:bg-accent-soft"
         >
           <FiGithub /> More on GitHub
         </a>

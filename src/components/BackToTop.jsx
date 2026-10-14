@@ -22,7 +22,7 @@ const BackToTop = () => {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}
           transition={{ duration: 0.2 }}
-          className="fixed right-5 bottom-5 z-40 flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-ink-800/90 text-xl text-white shadow-lg backdrop-blur transition-colors hover:bg-violet-600"
+          className="fixed right-5 bottom-5 z-40 flex h-12 w-12 items-center justify-center rounded-full border border-line bg-surface/90 text-xl text-fg shadow-lg backdrop-blur transition-colors hover:bg-violet-600 hover:text-white"
         >
           <HiArrowUp />
         </motion.button>

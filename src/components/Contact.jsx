@@ -13,7 +13,7 @@ const contactItems = [
 ];
 
 const inputClass =
-  "w-full rounded-xl border border-white/10 bg-ink-950 px-4 py-3 text-white placeholder-zinc-500 transition focus:border-violet-400 focus:outline-none focus:ring-2 focus:ring-violet-400/30";
+  "w-full rounded-xl border border-line bg-bg px-4 py-3 text-fg placeholder-subtle transition focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30";
 
 const Contact = () => {
   // idle | sending | success | error
@@ -48,7 +48,7 @@ const Contact = () => {
     <section id="contact" className="relative isolate px-4 py-24 sm:px-6 sm:py-32">
       <div
         aria-hidden="true"
-        className="absolute bottom-0 left-1/2 -z-10 h-80 w-[40rem] max-w-full -translate-x-1/2 rounded-full bg-violet-600/15 blur-[120px]"
+        className="absolute bottom-0 left-1/2 -z-10 h-80 w-[40rem] max-w-full -translate-x-1/2 rounded-full bg-violet-500/20 blur-[120px]"
       />
 
       <div className="mx-auto max-w-6xl">
@@ -69,21 +69,21 @@ const Contact = () => {
             {contactItems.map(({ icon: Icon, label, value, href }) => {
               const content = (
                 <>
-                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-violet-500/10 text-xl text-violet-300">
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent-soft text-xl text-accent">
                     <Icon />
                   </span>
                   <span className="min-w-0">
-                    <span className="block text-sm text-zinc-500">{label}</span>
-                    <span className="block truncate font-medium text-white">{value}</span>
+                    <span className="block text-sm text-subtle">{label}</span>
+                    <span className="block truncate font-medium text-fg">{value}</span>
                   </span>
                 </>
               );
               const cardClass =
-                "flex items-center gap-4 rounded-2xl border border-white/10 bg-ink-900 p-5";
+                "flex items-center gap-4 rounded-2xl border border-line bg-surface p-5 shadow-sm";
               return (
                 <li key={label}>
                   {href ? (
-                    <a href={href} className={`${cardClass} transition hover:border-violet-400/40`}>
+                    <a href={href} className={`${cardClass} transition hover:border-accent`}>
                       {content}
                     </a>
                   ) : (
@@ -100,11 +100,11 @@ const Contact = () => {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.5, delay: 0.1 }}
             onSubmit={handleSubmit}
-            className="space-y-5 rounded-2xl border border-white/10 bg-ink-900 p-6 sm:p-8"
+            className="space-y-5 rounded-2xl border border-line bg-surface p-6 shadow-sm sm:p-8"
           >
             <div className="grid gap-5 sm:grid-cols-2">
               <div>
-                <label htmlFor="name" className="mb-2 block text-sm font-medium text-zinc-300">
+                <label htmlFor="name" className="mb-2 block text-sm font-medium text-muted">
                   Name
                 </label>
                 <input
@@ -118,7 +118,7 @@ const Contact = () => {
                 />
               </div>
               <div>
-                <label htmlFor="email" className="mb-2 block text-sm font-medium text-zinc-300">
+                <label htmlFor="email" className="mb-2 block text-sm font-medium text-muted">
                   Email
                 </label>
                 <input
@@ -134,7 +134,7 @@ const Contact = () => {
             </div>
 
             <div>
-              <label htmlFor="message" className="mb-2 block text-sm font-medium text-zinc-300">
+              <label htmlFor="message" className="mb-2 block text-sm font-medium text-muted">
                 Message
               </label>
               <textarea
@@ -150,7 +150,7 @@ const Contact = () => {
             <button
               type="submit"
               disabled={status === "sending"}
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-violet-600 py-3.5 font-semibold text-white shadow-lg shadow-violet-600/25 transition hover:bg-violet-500 disabled:cursor-not-allowed disabled:opacity-60"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-violet-600 to-fuchsia-600 py-3.5 font-semibold text-white shadow-lg shadow-violet-600/30 transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
             >
               {status === "sending" ? "Sending…" : "Send message"}
               <FiSend />
@@ -165,8 +165,8 @@ const Contact = () => {
                     exit={{ opacity: 0 }}
                     className={`rounded-xl border p-4 text-center text-sm font-medium ${
                       status === "success"
-                        ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-300"
-                        : "border-red-500/30 bg-red-500/10 text-red-300"
+                        ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300"
+                        : "border-red-500/30 bg-red-500/10 text-red-700 dark:text-red-300"
                     }`}
                   >
                     {status === "success"

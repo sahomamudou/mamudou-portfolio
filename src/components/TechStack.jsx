@@ -3,7 +3,7 @@ import { techGroups } from "../data/portfolio";
 import SectionHeading from "./SectionHeading";
 
 const TechStack = () => (
-  <section id="techstack" className="bg-ink-900 px-4 py-24 sm:px-6 sm:py-32">
+  <section id="techstack" className="bg-surface-2/50 px-4 py-24 sm:px-6 sm:py-32">
     <div className="mx-auto max-w-6xl">
       <SectionHeading
         eyebrow="Tech stack"
@@ -19,18 +19,18 @@ const TechStack = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.5, delay: gi * 0.1 }}
-            className="rounded-2xl border border-white/10 bg-ink-800 p-6"
+            className="rounded-2xl border border-line bg-surface p-6 shadow-sm"
           >
-            <h3 className="mb-5 text-sm font-semibold uppercase tracking-[0.15em] text-zinc-400">
+            <h3 className="mb-5 text-sm font-bold uppercase tracking-[0.15em] text-accent">
               {group.title}
             </h3>
             <ul className="flex flex-wrap gap-2.5">
               {group.items.map(({ name, icon: Icon, color }) => (
                 <li
                   key={name}
-                  className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-ink-900 px-3.5 py-2.5 text-sm font-medium text-zinc-200 transition hover:border-white/25"
+                  className="inline-flex items-center gap-2 rounded-xl border border-line bg-bg px-3.5 py-2.5 text-sm font-medium text-fg transition hover:-translate-y-0.5 hover:border-accent"
                 >
-                  <Icon className="text-lg" style={{ color }} aria-hidden="true" />
+                  <Icon className="text-lg text-fg" style={{ color }} aria-hidden="true" />
                   {name}
                 </li>
               ))}

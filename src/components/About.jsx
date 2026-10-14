@@ -31,11 +31,11 @@ const About = () => (
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.5 }}
-          className="space-y-5 text-base leading-relaxed text-zinc-400 sm:text-lg"
+          className="space-y-5 text-base leading-relaxed text-muted sm:text-lg"
         >
           <p>
             I&apos;m a frontend developer with a passion for{" "}
-            <span className="text-zinc-100">clean UI, motion and responsive design</span>,
+            <span className="text-fg">clean UI, motion and responsive design</span>,
             now expanding into backend architecture with Strapi, TypeScript and
             scalable content modelling.
           </p>
@@ -47,7 +47,7 @@ const About = () => (
           </p>
           <p>
             Alongside client and personal work, I&apos;m an{" "}
-            <span className="text-zinc-100">instructor at JCC</span>, where I
+            <span className="text-fg">instructor at JCC</span>, where I
             teach frontend development and mentor students through real-world
             projects. My goal: full-stack products that are beautiful, robust
             and future-proof.
@@ -62,14 +62,14 @@ const About = () => (
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="flex gap-4 rounded-2xl border border-white/10 bg-ink-900 p-5"
+              className="flex gap-4 rounded-2xl border border-line bg-surface p-5 shadow-sm"
             >
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-violet-500/10 text-xl text-violet-300">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent-soft text-xl text-accent">
                 <Icon />
               </span>
               <div>
-                <h3 className="font-semibold text-white">{title}</h3>
-                <p className="mt-1 text-sm leading-relaxed text-zinc-400">{text}</p>
+                <h3 className="font-semibold text-fg">{title}</h3>
+                <p className="mt-1 text-sm leading-relaxed text-muted">{text}</p>
               </div>
             </motion.li>
           ))}

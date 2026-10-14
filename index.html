@@ -9,8 +9,22 @@
       content="Mamudou Saho is a full-stack developer and instructor in The Gambia building fast, accessible web apps with React, Tailwind CSS, Strapi and SQL."
     />
     <meta name="author" content="Mamudou Saho" />
-    <meta name="theme-color" content="#07060b" />
+    <meta name="theme-color" content="#0a0912" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Apply the saved (or OS) theme before first paint to avoid a flash -->
+    <script>
+      (function () {
+        var theme;
+        try {
+          theme = localStorage.getItem("theme");
+        } catch (e) {}
+        if (theme !== "light" && theme !== "dark") {
+          theme = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+        }
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
 
     <!-- Social previews (LinkedIn, WhatsApp, X, etc.) -->
     <meta property="og:type" content="website" />
