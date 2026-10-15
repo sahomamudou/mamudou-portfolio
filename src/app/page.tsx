@@ -1,6 +1,7 @@
 import { CommandMenu } from "@/components/command-menu";
 import { CopyrightYear } from "@/components/copyright-year";
 import { Hero } from "@/components/hero";
+import { ScrollProgress } from "@/components/interactive";
 import { About, Classes, Contact, Experience, Faq, Services, Testimonials, Work } from "@/components/sections";
 import { SiteHeader } from "@/components/site-header";
 import { SocialLinks } from "@/components/social-links";
@@ -24,6 +25,7 @@ export default function Home() {
         <div className="bg-grid absolute inset-x-0 top-0 h-[900px]" />
       </div>
 
+      <ScrollProgress />
       <SiteHeader />
       <main id="main">
         <Hero />

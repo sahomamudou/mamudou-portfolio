@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Check, Copy } from "lucide-react";
 import { profile } from "@/content/site";
 import { cn } from "@/lib/utils";
 
@@ -20,7 +21,10 @@ export function GlowCard({ className, children, ...props }: React.ComponentProps
         el.style.setProperty("--x", `${e.clientX - r.left}px`);
         el.style.setProperty("--y", `${e.clientY - r.top}px`);
       }}
-      className={cn("glow-card rounded-3xl border border-border bg-surface backdrop-blur-sm", className)}
+      className={cn(
+        "glow-card rounded-3xl border border-border bg-surface shadow-[0_1px_2px_rgb(7_18_15/0.04),0_14px_34px_-18px_rgb(7_18_15/0.2)] backdrop-blur-sm dark:shadow-none",
+        className,
+      )}
       {...props}
     >
       {children}
@@ -210,5 +214,62 @@ export function CodeCard({ className }: { className?: string }) {
         </code>
       </pre>
     </div>
+  );
+}
+
+/** Small icon button that copies `value` and briefly confirms. */
+export function CopyButton({ value, label }: { value: string; label: string }) {
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (!copied) return;
+    const id = setTimeout(() => setCopied(false), 1800);
+    return () => clearTimeout(id);
+  }, [copied]);
+
+  return (
+    <button
+      type="button"
+      onClick={() => navigator.clipboard?.writeText(value).then(() => setCopied(true))}
+      aria-label={copied ? "Copied" : label}
+      title={label}
+      className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-border bg-surface px-3 text-sm font-semibold text-muted transition-colors hover:border-accent/50 hover:text-foreground"
+    >
+      {copied ? <Check className="h-4 w-4 text-accent" aria-hidden="true" /> : <Copy className="h-4 w-4" aria-hidden="true" />}
+      {copied ? "Copied" : "Copy"}
+    </button>
+  );
+}
+
+/** Thin bar at the top of the window showing how far the page has been scrolled. */
+export function ScrollProgress() {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let frame = 0;
+    const update = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = max > 0 ? window.scrollY / max : 0;
+        if (ref.current) ref.current.style.transform = `scaleX(${progress})`;
+      });
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      aria-hidden="true"
+      className="fixed inset-x-0 top-0 z-50 h-[3px] origin-left scale-x-0 bg-gradient-to-r from-accent to-accent-2"
+    />
   );
 }

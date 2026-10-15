@@ -54,19 +54,24 @@ export function Hero() {
 
         {/* Portrait card with floating code editor and live clock */}
         <div className="relative mx-auto w-full max-w-[520px]">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-border bg-gradient-to-b from-[#2dd4bf]/25 via-[#2dd4bf]/5 to-[#6366f1]/15">
+          <div className="relative aspect-[4/4.4] overflow-hidden rounded-[2rem] border border-white/10 bg-[radial-gradient(120%_90%_at_50%_0%,#0f3d36_0%,#0a1f1c_45%,#0d1030_100%)] shadow-2xl shadow-[#0b2a25]/30">
+            <div aria-hidden="true" className="bg-grid absolute inset-0 opacity-60 [--grid:rgb(255_255_255/0.05)]" />
             <div
               aria-hidden="true"
-              className="absolute top-1/4 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-[#2dd4bf]/30 blur-[90px]"
+              className="absolute top-[18%] left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-[#2dd4bf]/35 blur-[90px]"
+            />
+            <div
+              aria-hidden="true"
+              className="absolute right-[8%] bottom-[10%] h-48 w-48 rounded-full bg-[#6366f1]/35 blur-[80px]"
             />
             <Image
               src={profile.photo}
               alt={`Portrait of ${profile.name}`}
-              width={433}
-              height={577}
+              width={520}
+              height={520}
               preload
-              sizes="(min-width: 1024px) 560px, 90vw"
-              className="absolute bottom-0 left-1/2 h-[104%] w-auto max-w-none -translate-x-[42%] object-contain [mask-image:linear-gradient(to_bottom,black_70%,transparent_100%)]"
+              sizes="(min-width: 1024px) 480px, 90vw"
+              className="absolute bottom-0 left-1/2 w-[92%] -translate-x-1/2 [mask-image:linear-gradient(to_bottom,black_72%,transparent_100%)]"
             />
           </div>
 

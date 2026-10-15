@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import { FaGithub as Github } from "react-icons/fa6";
 import { ContactForm } from "@/components/contact-form";
-import { GlowCard, LocalTime } from "@/components/interactive";
+import { CopyButton, GlowCard, LocalTime } from "@/components/interactive";
 import { Reveal } from "@/components/reveal";
 import { SocialLinks } from "@/components/social-links";
 import {
@@ -102,7 +102,7 @@ export function About() {
         <Reveal delay={60}>
           <GlowCard className="h-full p-6">
             <div className="flex items-center gap-3">
-              <Image src={profile.avatar} alt="" width={96} height={96} className="h-12 w-12 rounded-full bg-surface object-cover ring-2 ring-accent/40" />
+              <Image src={profile.photo} alt="" width={96} height={96} className="h-12 w-12 rounded-full bg-[#0f3d36] object-cover object-[50%_20%] ring-2 ring-accent/40" />
               <div>
                 <p className="font-bold">{profile.name}</p>
                 <p className="flex items-center gap-1 text-sm text-subtle">
@@ -505,9 +505,12 @@ export function Contact() {
                 <p className="mt-5 max-w-md text-lg text-muted">
                   Have a project, a role, or want to start learning to code? Send a message and I&apos;ll get back to you.
                 </p>
-                <a href={`mailto:${profile.email}`} className="mt-8 inline-block text-lg font-bold underline decoration-accent decoration-2 underline-offset-8 sm:text-xl">
-                  {profile.email}
-                </a>
+                <div className="mt-8 flex flex-wrap items-center gap-3">
+                  <a href={`mailto:${profile.email}`} className="text-lg font-bold underline decoration-accent decoration-2 underline-offset-8 sm:text-xl">
+                    {profile.email}
+                  </a>
+                  <CopyButton value={profile.email} label="Copy email address" />
+                </div>
                 <p className="mt-6 flex items-center gap-2 text-sm text-subtle">
                   <MapPin className="h-4 w-4" aria-hidden="true" /> {profile.location} · <LocalTime /> local time
                 </p>
