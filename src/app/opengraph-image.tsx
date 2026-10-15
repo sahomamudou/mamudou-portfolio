@@ -17,8 +17,8 @@ export default function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "80px",
-          background: "#0b0f17",
-          color: "#e2e8f0",
+          background: "#0e0e0e",
+          color: "#f5f5f5",
           fontFamily: "sans-serif",
         }}
       >
@@ -28,7 +28,7 @@ export default function OpengraphImage() {
             width: 88,
             height: 88,
             borderRadius: 20,
-            border: "2px solid rgba(226,232,240,0.15)",
+            border: "2px solid rgba(200,240,49,0.6)",
             alignItems: "center",
             justifyContent: "center",
             fontSize: 36,
@@ -39,8 +39,8 @@ export default function OpengraphImage() {
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ fontSize: 76, fontWeight: 700, letterSpacing: -2 }}>{profile.name}</div>
-          <div style={{ fontSize: 38, color: "#7dd3fc", marginTop: 12 }}>{profile.role}</div>
-          <div style={{ fontSize: 28, color: "#94a3b8", marginTop: 28 }}>
+          <div style={{ fontSize: 38, color: "#c8f031", marginTop: 12 }}>{profile.role}</div>
+          <div style={{ fontSize: 28, color: "#a6a6a6", marginTop: 28 }}>
             React · Next.js · TypeScript · Strapi · SQL
           </div>
         </div>

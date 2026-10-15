@@ -1,11 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Urbanist } from "next/font/google";
 import { ThemeProvider } from "@/components/theme";
 import { profile } from "@/content/site";
 import "./globals.css";
 
-const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
+const urbanist = Urbanist({ variable: "--font-urbanist", subsets: ["latin"] });
 
 const title = `${profile.name} · ${profile.role}`;
 const description =
@@ -30,16 +29,16 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f8fafc" },
-    { media: "(prefers-color-scheme: dark)", color: "#0b0f17" },
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
   ],
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     // next-themes sets the theme class before hydration
-    <html lang="en" suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body className="leading-relaxed">
+    <html lang="en" suppressHydrationWarning className={urbanist.variable}>
+      <body>
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

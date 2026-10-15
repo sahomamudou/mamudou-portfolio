@@ -4,29 +4,30 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /*
- * Design tokens. Components only use these semantic names
- * (bg-background, text-muted, border-border, …) so both themes stay in sync.
+ * Design tokens. Components use these semantic names
+ * (bg-background, bg-card, text-muted, bg-lime, …) so both themes stay in sync.
+ * Lime is only used as a background behind dark text, or as text on the dark hero.
  */
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
-  --muted: #475569;
-  --subtle: #5b6779;
-  --accent: #0369a1;
-  --border: rgb(15 23 42 / 0.1);
-  --card: rgb(15 23 42 / 0.03);
-  --spotlight: rgb(3 105 161 / 0.07);
+  --background: #ffffff;
+  --foreground: #0b0b0b;
+  --muted: #5f5f5f;
+  --faded: #8a8a8a; /* large text only */
+  --card: #f4f4f4;
+  --border: #e4e4e4;
+  --ink: #0e0e0e; /* dark hero and contact panels */
+  --lime: #c8f031;
+  --lime-ink: #0b0b0b;
 }
 
 .dark {
-  --background: #0b0f17;
-  --foreground: #e2e8f0;
-  --muted: #94a3b8;
-  --subtle: #8391a7;
-  --accent: #7dd3fc;
-  --border: rgb(226 232 240 / 0.1);
-  --card: rgb(148 163 184 / 0.05);
-  --spotlight: rgb(29 78 216 / 0.12);
+  --background: #0a0a0a;
+  --foreground: #f5f5f5;
+  --muted: #a6a6a6;
+  --faded: #7a7a7a;
+  --card: #151515;
+  --border: #262626;
+  --ink: #141414;
   color-scheme: dark;
 }
 
@@ -34,16 +35,26 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
-  --color-subtle: var(--subtle);
-  --color-accent: var(--accent);
-  --color-border: var(--border);
+  --color-faded: var(--faded);
   --color-card: var(--card);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-border: var(--border);
+  --color-ink: var(--ink);
+  --color-lime: var(--lime);
+  --color-lime-ink: var(--lime-ink);
+  --font-sans: var(--font-urbanist);
+
+  --animate-marquee: marquee 30s linear infinite;
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -53,13 +64,39 @@ html {
 }
 
 body {
-  @apply bg-background text-muted antialiased;
+  @apply bg-background text-foreground antialiased;
 }
 
 ::selection {
-  @apply bg-accent/25 text-foreground;
+  @apply bg-lime text-lime-ink;
 }
 
 :focus-visible {
-  @apply rounded-sm outline-2 outline-offset-4 outline-accent;
+  @apply rounded-sm outline-2 outline-offset-4 outline-foreground;
+}
+
+/* Scroll-reveal: elements fade up once they enter the viewport */
+.reveal {
+  opacity: 0;
+  translate: 0 24px;
+  transition:
+    opacity 0.7s ease,
+    translate 0.7s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  translate: 0 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    translate: none;
+    transition: none;
+  }
+}
+
+/* Large outlined text used in the testimonials marquee */
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--border);
 }
