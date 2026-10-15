@@ -1,10 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Urbanist } from "next/font/google";
+import { JetBrains_Mono, Manrope } from "next/font/google";
 import { ThemeProvider } from "@/components/theme";
 import { profile } from "@/content/site";
 import "./globals.css";
 
-const urbanist = Urbanist({ variable: "--font-urbanist", subsets: ["latin"] });
+const manrope = Manrope({ variable: "--font-manrope", subsets: ["latin"] });
+const jetbrains = JetBrains_Mono({ variable: "--font-jetbrains", subsets: ["latin"] });
 
 const title = `${profile.name} · ${profile.role}`;
 const description =
@@ -29,15 +30,15 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+    { media: "(prefers-color-scheme: light)", color: "#f5f8f7" },
+    { media: "(prefers-color-scheme: dark)", color: "#050d0b" },
   ],
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     // next-themes sets the theme class before hydration
-    <html lang="en" suppressHydrationWarning className={urbanist.variable}>
+    <html lang="en" suppressHydrationWarning className={`${manrope.variable} ${jetbrains.variable}`}>
       <body>
         <ThemeProvider>{children}</ThemeProvider>
       </body>

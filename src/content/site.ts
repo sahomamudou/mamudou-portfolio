@@ -1,24 +1,28 @@
 // All portfolio content lives here. Edit this file to update the site.
+// Items marked "EDIT" are placeholders or assumptions for you to confirm.
 
 export const profile = {
   name: "Mamudou Saho",
   firstName: "Mamudou",
-  headline: "Developer & Instructor",
+  domainLabel: "mamudou.dev",
   role: "Full-Stack Developer & Instructor",
-  shortBio:
-    "Full-stack developer and frontend instructor based in Lamin, The Gambia, building fast, accessible web apps.",
+  intro:
+    "I'm Mamudou. I design and build fast, accessible web apps with React, Next.js and Strapi, and I teach frontend development at JCC and in private classes.",
   location: "Lamin, The Gambia",
+  timeZone: "Africa/Banjul",
   email: "sahomamudou2003@gmail.com",
   photo: "/mamudou1.png",
+  avatar: "/avatar.png",
   // Drop a PDF in /public and set e.g. "/mamudou-saho-cv.pdf" to show a résumé button
   resume: null as string | null,
 };
 
 export const nav = [
-  { id: "home", label: "Home" },
   { id: "about", label: "About" },
   { id: "services", label: "Services" },
+  { id: "classes", label: "Classes" },
   { id: "work", label: "Work" },
+  { id: "testimonials", label: "Testimonials" },
   { id: "contact", label: "Contact" },
 ] as const;
 
@@ -32,62 +36,62 @@ export const socials = [
   { label: "X", href: "https://x.com/mamudoudaho2003", icon: "x" },
 ] as const;
 
-// Hero numbers. Replace with your own as you grow, e.g. { value: "50+", label: "Students taught" }
+// Hero numbers. `count` animates up to the value; leave it out for text values.
+// EDIT: add real numbers as you grow, e.g. { count: 50, suffix: "+", label: "Students taught" }
 export const stats = [
-  { value: "4+", label: "Live projects" },
-  { value: "15+", label: "Technologies" },
-  { value: "JCC", label: "Frontend instructor" },
-];
+  { count: 4, suffix: "+", label: "Live projects" },
+  { count: 15, suffix: "+", label: "Technologies" },
+  { text: "JCC", label: "Frontend instructor" },
+] as const;
 
-export type Service = {
-  title: string;
-  icon: "monitor" | "server" | "classes" | "mentor";
-  summary: string;
-  description: string;
-  tags: string[];
-  // Optional example shown when the card is open
-  example?: { title: string; image: string; href: string };
+export const stack = {
+  frontend: ["React", "Next.js", "TypeScript", "JavaScript", "Tailwind CSS", "HTML & CSS"],
+  backend: ["Node.js", "Strapi", "REST APIs", "SQL / MySQL"],
+  tools: ["Git & GitHub", "Vite", "Vercel"],
 };
 
-export const services: Service[] = [
+export const services = [
   {
-    title: "Frontend Development",
+    title: "Web Apps & Websites",
     icon: "monitor",
-    summary: "Responsive, accessible interfaces",
-    description:
-      "I build fast, responsive interfaces with React, Next.js and Tailwind CSS: clean component architecture, accessible markup and smooth interactions that work on every screen size.",
-    tags: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
-    example: {
-      title: "GitHub User Finder",
-      image: "/github-user-finder.png",
-      href: "https://github-user-finder-orcin.vercel.app/",
-    },
+    text: "Responsive, accessible interfaces built with React, Next.js and Tailwind CSS, from landing pages to full web apps.",
+    points: ["Next.js & React", "Responsive on every device", "Fast & SEO-friendly"],
   },
   {
     title: "Backend & APIs",
     icon: "server",
-    summary: "Content models, APIs and databases",
-    description:
-      "I design content models and REST APIs with Strapi and Node.js, and structure relational data with SQL so your product is easy to manage and ready to grow.",
-    tags: ["Strapi", "Node.js", "REST APIs", "SQL / MySQL"],
-  },
-  {
-    title: "Private Coding Classes",
-    icon: "classes",
-    summary: "One-to-one and small-group lessons",
-    description:
-      "Personal lessons in HTML, CSS, JavaScript and React, tailored to your level and goals. We learn by building real projects together, from your first web page to a deployed app.",
-    tags: ["Beginners welcome", "HTML & CSS", "JavaScript", "React"],
+    text: "Content models, REST APIs and admin dashboards with Strapi and Node.js, backed by well-structured SQL databases.",
+    points: ["Strapi CMS", "REST APIs", "SQL data modelling"],
   },
   {
     title: "Teaching & Mentorship",
     icon: "mentor",
-    summary: "Frontend instructor at JCC",
-    description:
-      "As a frontend development instructor at JCC, I guide students through modern web development with hands-on projects, code reviews and mentoring.",
-    tags: ["Curriculum", "Code reviews", "Mentoring"],
+    text: "Frontend development instructor at JCC, guiding students through hands-on projects, code reviews and mentoring.",
+    points: ["Project-based learning", "Code reviews", "Career guidance"],
   },
-];
+] as const;
+
+// EDIT: adjust formats and tracks to match exactly what you offer
+export const classes = {
+  intro:
+    "Learn to build real websites and apps with a patient, practical teacher. Lessons are tailored to your level, and we learn by building projects together.",
+  formats: [
+    {
+      title: "One-to-one lessons",
+      text: "Personal sessions focused entirely on your goals and pace. Ideal for beginners or anyone stuck on a specific topic.",
+    },
+    {
+      title: "Small-group classes",
+      text: "Learn alongside a few other students, work on shared projects and keep each other motivated.",
+    },
+  ],
+  tracks: [
+    { title: "Web foundations", text: "HTML, CSS and responsive layouts" },
+    { title: "JavaScript essentials", text: "Logic, the DOM and working with APIs" },
+    { title: "React & modern frontend", text: "Components, state and Tailwind CSS" },
+    { title: "Build & deploy", text: "Ship a real project with Git and Vercel" },
+  ],
+};
 
 export type Project = {
   title: string;
@@ -99,7 +103,7 @@ export type Project = {
   tech: string[];
 };
 
-// The first project is featured as the large showcase card
+// The first project is featured as the large card
 export const projects: Project[] = [
   {
     title: "GitHub User Finder",
@@ -108,7 +112,7 @@ export const projects: Project[] = [
       "Search any GitHub user and browse their profile and public repositories, with data fetched live from the GitHub REST API.",
     image: "/github-user-finder.png",
     href: "https://github-user-finder-orcin.vercel.app/",
-    tech: ["React", "GitHub API", "Tailwind CSS"],
+    tech: ["React", "GitHub API", "Tailwind CSS", "Vite"],
   },
   {
     title: "Product List & Cart",
@@ -137,6 +141,28 @@ export const projects: Project[] = [
   },
 ];
 
+// EDIT: replace "Current" / "Ongoing" with real dates, e.g. "2024 — Present"
+export const experience = [
+  {
+    period: "Current",
+    title: "Frontend Development Instructor",
+    org: "JCC",
+    text: "Teach HTML, CSS, JavaScript and React. Design lessons around real-world projects, review student code and mentor learners from first page to deployed app.",
+  },
+  {
+    period: "Ongoing",
+    title: "Private Coding Tutor",
+    org: "Independent",
+    text: "One-to-one and small-group lessons for beginners and developers levelling up their frontend skills.",
+  },
+  {
+    period: "Ongoing",
+    title: "Full-Stack Developer",
+    org: "Independent projects",
+    text: "Build and deploy responsive web apps end to end, and deepen backend skills with Strapi, TypeScript and SQL.",
+  },
+];
+
 export type Testimonial = {
   name: string;
   role: string; // e.g. "Student, JCC" or "Private class student"
@@ -149,33 +175,29 @@ export type Testimonial = {
 // { name: "Awa Jallow", role: "Student, JCC", quote: "Mamudou explains things so clearly..." },
 export const testimonials: Testimonial[] = [];
 
-export const process = [
+// EDIT: adjust answers to match how you work
+export const faq = [
   {
-    title: "Discover",
-    icon: "search",
-    text: "We talk through your goals, audience and requirements so I understand exactly what success looks like.",
+    q: "What kind of projects do you take on?",
+    a: "Websites, landing pages and web apps built with React and Next.js, plus backends and content management with Strapi and SQL. If you're not sure whether your idea fits, just ask.",
   },
   {
-    title: "Plan",
-    icon: "plan",
-    text: "I map out pages, components and data, and agree on scope and timeline before writing code.",
+    q: "How much does a project cost?",
+    a: "It depends on the scope. Send me a short description of what you need through the contact form and I'll reply with a clear estimate.",
   },
   {
-    title: "Build",
-    icon: "build",
-    text: "I develop in small, reviewable steps with clean, maintainable code and regular progress updates.",
+    q: "Who are your private classes for?",
+    a: "Complete beginners who want to start coding, and learners who already know the basics and want to get confident with JavaScript and React.",
   },
   {
-    title: "Test",
-    icon: "test",
-    text: "I check responsiveness, accessibility and performance across devices and browsers.",
+    q: "How do I book a class?",
+    a: "Use the contact form and choose “Private coding classes”. Tell me your level and goals, and we'll agree on a schedule that works for you.",
   },
   {
-    title: "Deliver",
-    icon: "deliver",
-    text: "I deploy, hand over clear documentation and stay available for support and improvements.",
+    q: "What do I need to start learning?",
+    a: "A computer and an internet connection. I'll help you set up everything else, including your code editor and tools.",
   },
-] as const;
+];
 
 export const contact = {
   formEndpoint: "https://formspree.io/f/xjkneerw",

@@ -5,7 +5,7 @@ import { ThemeProvider as NextThemesProvider, useTheme } from "next-themes";
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   return (
-    <NextThemesProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+    <NextThemesProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
       {children}
     </NextThemesProvider>
   );
@@ -20,7 +20,7 @@ export function ThemeToggle() {
       type="button"
       onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
       aria-label="Toggle color theme"
-      className="flex h-11 w-11 items-center justify-center rounded-full border border-border transition-colors hover:bg-card"
+      className="flex h-10 w-10 items-center justify-center rounded-xl border border-border text-muted transition-colors hover:text-foreground"
     >
       <Sun className="hidden h-[18px] w-[18px] dark:block" aria-hidden="true" />
       <Moon className="h-[18px] w-[18px] dark:hidden" aria-hidden="true" />

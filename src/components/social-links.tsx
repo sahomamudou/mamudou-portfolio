@@ -1,11 +1,9 @@
 import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 import { socials } from "@/content/site";
-import { cn } from "@/lib/utils";
 
 const icons = { github: FaGithub, linkedin: FaLinkedin, x: FaXTwitter };
 
-/** Social icon links. `tone="dark"` styles them for the dark panels. */
-export function SocialLinks({ tone = "dark" }: { tone?: "dark" | "light" }) {
+export function SocialLinks() {
   return (
     <ul className="flex items-center gap-2" aria-label="Social media">
       {socials.map(({ label, href, icon }) => {
@@ -18,12 +16,7 @@ export function SocialLinks({ tone = "dark" }: { tone?: "dark" | "light" }) {
               rel="noreferrer noopener"
               aria-label={`${label} (opens in a new tab)`}
               title={label}
-              className={cn(
-                "flex h-11 w-11 items-center justify-center rounded-full border transition-colors",
-                tone === "dark"
-                  ? "border-white/15 text-white/80 hover:border-lime hover:bg-lime hover:text-lime-ink"
-                  : "border-border text-muted hover:bg-foreground hover:text-background",
-              )}
+              className="flex h-11 w-11 items-center justify-center rounded-xl border border-border bg-surface text-muted transition-colors hover:border-accent/50 hover:text-accent"
             >
               <Icon className="h-[18px] w-[18px]" aria-hidden="true" />
             </a>

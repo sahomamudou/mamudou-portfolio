@@ -4,30 +4,44 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /*
- * Design tokens. Components use these semantic names
- * (bg-background, bg-card, text-muted, bg-lime, …) so both themes stay in sync.
- * Lime is only used as a background behind dark text, or as text on the dark hero.
+ * Design tokens. Components use only these semantic names
+ * (bg-background, bg-surface, text-muted, bg-primary, text-accent, …)
+ * so the light and dark themes stay in sync.
  */
 :root {
-  --background: #ffffff;
-  --foreground: #0b0b0b;
-  --muted: #5f5f5f;
-  --faded: #8a8a8a; /* large text only */
-  --card: #f4f4f4;
-  --border: #e4e4e4;
-  --ink: #0e0e0e; /* dark hero and contact panels */
-  --lime: #c8f031;
-  --lime-ink: #0b0b0b;
+  --background: #f5f8f7;
+  --foreground: #07120f;
+  --muted: #45524f;
+  --subtle: #5b6a66;
+  --surface: rgb(255 255 255 / 0.75);
+  --surface-strong: #ffffff;
+  --border: rgb(7 18 15 / 0.1);
+  --accent: #0b6560; /* teal text highlights */
+  --accent-2: #4338ca; /* indigo */
+  --primary: #0f766e; /* button background */
+  --primary-ink: #ffffff;
+  --glow-a: rgb(45 212 191 / 0.22);
+  --glow-b: rgb(99 102 241 / 0.16);
+  --grid: rgb(7 18 15 / 0.05);
+  --code-bg: #0b1a17;
 }
 
 .dark {
-  --background: #0a0a0a;
-  --foreground: #f5f5f5;
-  --muted: #a6a6a6;
-  --faded: #7a7a7a;
-  --card: #151515;
-  --border: #262626;
-  --ink: #141414;
+  --background: #050d0b;
+  --foreground: #eef5f3;
+  --muted: #a5b6b2;
+  --subtle: #82938f;
+  --surface: rgb(255 255 255 / 0.04);
+  --surface-strong: #0c1916;
+  --border: rgb(255 255 255 / 0.1);
+  --accent: #5eead4;
+  --accent-2: #a5b4fc;
+  --primary: #5eead4;
+  --primary-ink: #042f2a;
+  --glow-a: rgb(45 212 191 / 0.28);
+  --glow-b: rgb(99 102 241 / 0.3);
+  --grid: rgb(255 255 255 / 0.04);
+  --code-bg: #0b1a17;
   color-scheme: dark;
 }
 
@@ -35,32 +49,50 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
-  --color-faded: var(--faded);
-  --color-card: var(--card);
+  --color-subtle: var(--subtle);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
   --color-border: var(--border);
-  --color-ink: var(--ink);
-  --color-lime: var(--lime);
-  --color-lime-ink: var(--lime-ink);
-  --font-sans: var(--font-urbanist);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-primary: var(--primary);
+  --color-primary-ink: var(--primary-ink);
+  --color-code: var(--code-bg);
+  --font-sans: var(--font-manrope);
+  --font-mono: var(--font-jetbrains);
 
-  --animate-marquee: marquee 30s linear infinite;
+  --animate-drift: drift 18s ease-in-out infinite alternate;
+  --animate-drift-slow: drift 26s ease-in-out infinite alternate-reverse;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-blink: blink 1s steps(1) infinite;
 
-  @keyframes marquee {
+  @keyframes drift {
+    from {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
     to {
-      transform: translateX(-50%);
+      transform: translate3d(-6%, 4%, 0) scale(1.12);
+    }
+  }
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+  @keyframes blink {
+    50% {
+      opacity: 0;
     }
   }
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 6rem;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
+  scroll-padding-top: 6.5rem;
 }
 
 body {
@@ -68,17 +100,57 @@ body {
 }
 
 ::selection {
-  @apply bg-lime text-lime-ink;
+  @apply bg-primary text-primary-ink;
 }
 
 :focus-visible {
-  @apply rounded-sm outline-2 outline-offset-4 outline-foreground;
+  @apply rounded-md outline-2 outline-offset-4 outline-accent;
+}
+
+/* Gradient text for key phrases */
+.text-gradient {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Faint engineering grid behind the page, fading out toward the edges */
+.bg-grid {
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%);
+}
+
+/* Cards that light up under the cursor (position set by <GlowCard>) */
+.glow-card {
+  position: relative;
+  isolation: isolate;
+}
+.glow-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(
+    420px circle at var(--x, 50%) var(--y, -100%),
+    var(--glow-a),
+    transparent 45%
+  );
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.glow-card:hover::before {
+  opacity: 1;
 }
 
 /* Scroll-reveal: elements fade up once they enter the viewport */
 .reveal {
   opacity: 0;
-  translate: 0 24px;
+  translate: 0 20px;
   transition:
     opacity 0.7s ease,
     translate 0.7s ease;
@@ -87,16 +159,20 @@ body {
   opacity: 1;
   translate: 0 0;
 }
+
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
   .reveal {
     opacity: 1;
     translate: none;
     transition: none;
   }
-}
-
-/* Large outlined text used in the testimonials marquee */
-.text-outline {
-  color: transparent;
-  -webkit-text-stroke: 1.5px var(--border);
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
