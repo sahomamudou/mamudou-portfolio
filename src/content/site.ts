@@ -7,7 +7,7 @@ export const profile = {
   domainLabel: "mamudou.dev",
   role: "Web Developer & Instructor",
   intro:
-    "I'm Mamudou, a full-time developer and instructor at Jasseh Code Camp (JCC). I work on Boutique, the JCC team's business management system for local shops, build web apps with React, Next.js and Strapi, and teach the next generation of developers.",
+    "I'm Mamudou, a full-time developer and instructor at JassehCodeCamp (JCC). I work on Boutique, the JCC team's business management system for local shops, build web apps with React, Next.js and Strapi, and teach the next generation of developers.",
   languages: ["English", "Mandinka", "Wolof"],
   location: "Lamin, The Gambia",
   timeZone: "Africa/Banjul",
@@ -70,7 +70,7 @@ export const services = [
   {
     title: "Teaching & Mentorship",
     icon: "mentor",
-    text: "Developer and instructor at Jasseh Code Camp: tutorials, one-on-one mentorship and project guidance that bridge classroom learning and real industry work.",
+    text: "Developer and instructor at JassehCodeCamp: tutorials, one-on-one mentorship and project guidance that bridge classroom learning and real industry work.",
     points: ["Project-based learning", "Code reviews", "Career guidance"],
   },
 ] as const;
@@ -97,10 +97,10 @@ export const classes = {
   ],
 };
 
-// Real-world work at Jasseh Code Camp, shown above the personal projects
+// Real-world work at JassehCodeCamp, shown above the personal projects
 export const boutique = {
   title: "Boutique",
-  subtitle: "Business management system · Jasseh Code Camp",
+  subtitle: "Business management system · JassehCodeCamp",
   text: "Boutique is a business management system built by the JCC team for local shops of every kind. As part of that team, I help develop and maintain it, and I take it into the field: installing it on-site, setting up point-of-sale and attendance hardware, training owners and staff, and supporting shops after launch.",
   points: [
     "On-site installation and configuration",
@@ -171,26 +171,26 @@ export const experience = [
   {
     period: "2026 — Now",
     title: "Developer & Instructor",
-    org: "Jasseh Code Camp",
+    org: "JassehCodeCamp",
     text: "Moved into a full-time role after completing my internship. I work with the JCC team on Boutique, our business management system for local shops, mentor students and lead projects that combine modern frontend frameworks with backend solutions.",
   },
   {
     period: "2025 — 2026",
     title: "CMS Developer (Extended Internship)",
-    org: "Jasseh Code Camp",
+    org: "JassehCodeCamp",
     text: "Internship extended for strong performance. Worked on the JCC software development team across frontend and backend projects, and provided technical support for Boutique, one of JCC's flagship products.",
   },
   {
     period: "2025",
     title: "Teaching Assistant Intern",
-    org: "Jasseh Code Camp",
+    org: "JassehCodeCamp",
     text: "Ran tutorials and one-on-one mentorship for JCC Academy students and helped with student projects, assignments and academy operations, while finishing my own Frontend Web Development course.",
   },
 ];
 
 export const education = [
   {
-    org: "Jasseh Code Camp",
+    org: "JassehCodeCamp",
     title: "Technical training",
     items: [
       "Frontend Web Development, Parts 1 & 2",

@@ -135,7 +135,7 @@ export function About() {
               <p className="flex items-center gap-1.5 text-sm text-white/75">
                 <GraduationCap className="h-4 w-4" aria-hidden="true" /> Currently
               </p>
-              <p className="mt-1 text-lg leading-snug font-bold">Developer &amp; instructor at Jasseh Code Camp</p>
+              <p className="mt-1 text-lg leading-snug font-bold">Developer &amp; instructor at JassehCodeCamp</p>
             </div>
           </GlowCard>
         </Reveal>
@@ -458,7 +458,7 @@ export function Experience() {
             index="05"
             label="experience"
             title="Where I've been building and teaching"
-            description="From student to teaching assistant to full-time developer and instructor at Jasseh Code Camp."
+            description="From student to teaching assistant to full-time developer and instructor at JassehCodeCamp."
           />
         </div>
         <ol className="relative space-y-4 before:absolute before:top-4 before:bottom-4 before:left-[19px] before:w-px before:bg-gradient-to-b before:from-accent before:to-transparent">
