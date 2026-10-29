@@ -5,7 +5,7 @@ export const profile = {
   name: "Mamudou Saho",
   firstName: "Mamudou",
   domainLabel: "mamudou.dev",
-  role: "Full-Stack Developer & Instructor",
+  role: "Web Developer & Instructor",
   intro:
     "I'm Mamudou, a full-time developer and instructor at Jasseh Code Camp (JCC). I work on Boutique, the JCC team's business management system for local shops, build web apps with React, Next.js and Strapi, and teach the next generation of developers.",
   languages: ["English", "Mandinka", "Wolof"],

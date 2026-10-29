@@ -99,7 +99,7 @@ const code: Token[][] = [
   [
     { text: "  role", className: "text-[#f07178]" },
     { text: ": ", className: "text-[#e2e8f0]" },
-    { text: '"Full-Stack Developer"', className: "text-[#c3e88d]" },
+    { text: '"Web Developer"', className: "text-[#c3e88d]" },
     { text: ",", className: "text-[#e2e8f0]" },
   ],
   [

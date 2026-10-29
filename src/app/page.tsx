@@ -17,13 +17,11 @@ export default function Home() {
         Skip to content
       </a>
 
-      {/* Aurora backdrop: drifting colour glows over a faint grid */}
-      <div aria-hidden="true" className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-        <div className="absolute -top-40 right-[-10%] h-[620px] w-[620px] animate-drift rounded-full bg-[var(--glow-a)] blur-[120px]" />
-        <div className="absolute top-[30%] right-[-15%] h-[520px] w-[520px] animate-drift-slow rounded-full bg-[var(--glow-b)] blur-[120px]" />
-        <div className="absolute -top-60 -left-40 h-[560px] w-[560px] animate-drift-slow rounded-full bg-[var(--glow-a)] opacity-50 blur-[130px]" />
-        <div className="bg-grid absolute inset-x-0 top-0 h-[900px]" />
-      </div>
+      {/* Backdrop: one soft, static light at the top of the page */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[820px] bg-[radial-gradient(ellipse_70%_60%_at_50%_-10%,var(--backdrop),transparent_70%)]"
+      />
 
       <ScrollProgress />
       <SiteHeader />

@@ -9,7 +9,7 @@ const jetbrains = JetBrains_Mono({ variable: "--font-jetbrains", subsets: ["lati
 
 const title = `${profile.name} · ${profile.role}`;
 const description =
-  "Mamudou Saho is a full-stack developer and frontend instructor in The Gambia, building accessible web apps with React, Next.js, TypeScript, Strapi and SQL.";
+  "Mamudou Saho is a web developer and frontend instructor in The Gambia, building accessible web apps with React, Next.js, TypeScript, Strapi and SQL.";
 
 // Absolute base for social preview URLs. Set NEXT_PUBLIC_SITE_URL once you have a custom domain;
 // on Vercel the production URL is picked up automatically.

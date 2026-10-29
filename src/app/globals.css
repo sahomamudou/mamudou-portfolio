@@ -9,7 +9,8 @@
  * so the light and dark themes stay in sync.
  */
 :root {
-  --background: #f5f8f7;
+  --background: #f8f9f9;
+  --backdrop: rgb(15 118 110 / 0.07);
   --foreground: #07120f;
   --muted: #45524f;
   --subtle: #5b6a66;
@@ -21,13 +22,13 @@
   --primary: #0f766e; /* button background */
   --primary-ink: #ffffff;
   --glow-a: rgb(45 212 191 / 0.22);
-  --glow-b: rgb(99 102 241 / 0.16);
   --grid: rgb(7 18 15 / 0.05);
   --code-bg: #0b1a17;
 }
 
 .dark {
   --background: #050d0b;
+  --backdrop: rgb(45 212 191 / 0.1);
   --foreground: #eef5f3;
   --muted: #a5b6b2;
   --subtle: #82938f;
@@ -39,7 +40,6 @@
   --primary: #5eead4;
   --primary-ink: #042f2a;
   --glow-a: rgb(45 212 191 / 0.28);
-  --glow-b: rgb(99 102 241 / 0.3);
   --grid: rgb(255 255 255 / 0.04);
   --code-bg: #0b1a17;
   color-scheme: dark;
@@ -61,20 +61,10 @@
   --font-sans: var(--font-manrope);
   --font-mono: var(--font-jetbrains);
 
-  --animate-drift: drift 18s ease-in-out infinite alternate;
-  --animate-drift-slow: drift 26s ease-in-out infinite alternate-reverse;
   --animate-float: float 6s ease-in-out infinite;
   --animate-blink: blink 1s steps(1) infinite;
   --animate-marquee: marquee 60s linear infinite;
 
-  @keyframes drift {
-    from {
-      transform: translate3d(0, 0, 0) scale(1);
-    }
-    to {
-      transform: translate3d(-6%, 4%, 0) scale(1.12);
-    }
-  }
   @keyframes float {
     0%,
     100% {
@@ -121,14 +111,6 @@ body {
   color: transparent;
 }
 
-/* Faint engineering grid behind the page, fading out toward the edges */
-.bg-grid {
-  background-image:
-    linear-gradient(var(--grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%);
-}
 
 /* Cards that light up under the cursor (position set by <GlowCard>) */
 .glow-card {

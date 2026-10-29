@@ -17,7 +17,7 @@ export function Hero() {
           </p>
 
           <h1 className="mt-6 text-[2.75rem] leading-[1.04] font-extrabold tracking-[-0.035em] sm:text-6xl lg:text-[4rem]">
-            Full-stack developer who also{" "}
+            Web developer who also{" "}
             <span className="text-gradient">teaches the craft.</span>
           </h1>
 
