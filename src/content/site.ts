@@ -11,7 +11,9 @@ export const profile = {
   location: "Lamin, The Gambia",
   timeZone: "Africa/Banjul",
   email: "sahomamudou2003@gmail.com",
-  photo: "/portrait.png", // head-and-shoulders cut-out (520×520)
+  photo: "/photos/hero.jpg", // main portrait (560×616)
+  headshot: "/photos/headshot.jpg", // round avatar (450×450)
+  teachingPhoto: "/photos/teaching.jpg", // "in action" shot (567×423)
   // Drop a PDF in /public and set e.g. "/mamudou-saho-cv.pdf" to show a résumé button
   resume: null as string | null,
 };

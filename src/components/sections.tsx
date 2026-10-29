@@ -102,7 +102,7 @@ export function About() {
         <Reveal delay={60}>
           <GlowCard className="h-full p-6">
             <div className="flex items-center gap-3">
-              <Image src={profile.photo} alt="" width={96} height={96} className="h-12 w-12 rounded-full bg-[#0f3d36] object-cover object-[50%_20%] ring-2 ring-accent/40" />
+              <Image src={profile.headshot} alt="" width={96} height={96} className="h-12 w-12 rounded-full object-cover ring-2 ring-accent/40" />
               <div>
                 <p className="font-bold">{profile.name}</p>
                 <p className="flex items-center gap-1 text-sm text-subtle">
@@ -118,12 +118,21 @@ export function About() {
         </Reveal>
 
         <Reveal delay={120}>
-          <GlowCard className="h-full p-6">
-            <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent/12 text-accent">
-              <GraduationCap className="h-5 w-5" aria-hidden="true" />
-            </span>
-            <p className="mt-6 text-sm text-subtle">Currently</p>
-            <p className="mt-1 text-lg leading-snug font-bold">Teaching frontend development at JCC</p>
+          <GlowCard className="relative h-full min-h-[200px] overflow-hidden">
+            <Image
+              src={profile.teachingPhoto}
+              alt={`${profile.firstName} working on his laptop`}
+              fill
+              sizes="(min-width: 1024px) 280px, (min-width: 768px) 50vw, 100vw"
+              className="object-cover object-[50%_30%]"
+            />
+            <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 p-5 text-white">
+              <p className="flex items-center gap-1.5 text-sm text-white/75">
+                <GraduationCap className="h-4 w-4" aria-hidden="true" /> Currently
+              </p>
+              <p className="mt-1 text-lg leading-snug font-bold">Teaching frontend development at JCC</p>
+            </div>
           </GlowCard>
         </Reveal>
 
