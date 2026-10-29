@@ -7,7 +7,7 @@ export const profile = {
   domainLabel: "mamudou.dev",
   role: "Full-Stack Developer & Instructor",
   intro:
-    "I'm Mamudou, a full-time developer and instructor at Jasseh Code Camp (JCC). I build business management systems for local entrepreneurs with React, Next.js and Strapi, and I teach the next generation of developers.",
+    "I'm Mamudou, a full-time developer and instructor at Jasseh Code Camp (JCC). I work on Boutique, the JCC team's business management system for local shops, build web apps with React, Next.js and Strapi, and teach the next generation of developers.",
   languages: ["English", "Mandinka", "Wolof"],
   location: "Lamin, The Gambia",
   timeZone: "Africa/Banjul",
@@ -101,7 +101,7 @@ export const classes = {
 export const boutique = {
   title: "Boutique",
   subtitle: "Business management system · Jasseh Code Camp",
-  text: "Boutique is JCC's business management system for local shops. I build and maintain it, and I take it into the field: installing it on-site, setting up point-of-sale and attendance hardware, training owners and staff, and supporting supermarkets, pharmacies and beauty stores after launch.",
+  text: "Boutique is a business management system built by the JCC team for local shops of every kind. As part of that team, I help develop and maintain it, and I take it into the field: installing it on-site, setting up point-of-sale and attendance hardware, training owners and staff, and supporting shops after launch.",
   points: [
     "On-site installation and configuration",
     "POS and biometric attendance device setup",
@@ -172,7 +172,7 @@ export const experience = [
     period: "2026 — Now",
     title: "Developer & Instructor",
     org: "Jasseh Code Camp",
-    text: "Moved into a full-time role after completing my internship. I build and maintain business management systems for local boutique entrepreneurs, mentor students and lead projects that combine modern frontend frameworks with backend solutions.",
+    text: "Moved into a full-time role after completing my internship. I work with the JCC team on Boutique, our business management system for local shops, mentor students and lead projects that combine modern frontend frameworks with backend solutions.",
   },
   {
     period: "2025 — 2026",
