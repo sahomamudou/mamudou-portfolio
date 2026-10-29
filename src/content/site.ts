@@ -40,11 +40,13 @@ export const socials = [
 
 // Hero numbers. `count` animates up to the value; leave it out for text values.
 // Add more as you grow, e.g. { count: 50, suffix: "+", label: "Students taught" }
-export const stats = [
+export type Stat = { label: string } & ({ count: number; suffix?: string } | { text: string });
+
+export const stats: Stat[] = [
   { count: 1, suffix: "+", label: "Years teaching at JCC" },
   { count: 4, suffix: "+", label: "Live projects" },
   { count: 10, suffix: "+", label: "Technologies" },
-] as const;
+];
 
 export const stack = {
   frontend: ["React", "Next.js", "TypeScript", "JavaScript", "Tailwind CSS", "HTML & CSS"],
