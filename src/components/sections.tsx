@@ -19,6 +19,7 @@ import { Reveal } from "@/components/reveal";
 import { SocialLinks } from "@/components/social-links";
 import {
   classes,
+  education,
   experience,
   faq,
   profile,
@@ -27,6 +28,7 @@ import {
   socials,
   stack,
   testimonials,
+  testimonialsSource,
 } from "@/content/site";
 import { cn } from "@/lib/utils";
 
@@ -110,7 +112,8 @@ export function About() {
                 </p>
               </div>
             </div>
-            <p className="mt-6 text-sm text-subtle">Local time</p>
+            <p className="mt-4 text-sm text-subtle">Speaks {profile.languages.join(", ").replace(/, ([^,]*)$/, " & $1")}</p>
+            <p className="mt-4 text-sm text-subtle">Local time</p>
             <p className="font-mono text-3xl font-bold">
               <LocalTime />
             </p>
@@ -131,7 +134,7 @@ export function About() {
               <p className="flex items-center gap-1.5 text-sm text-white/75">
                 <GraduationCap className="h-4 w-4" aria-hidden="true" /> Currently
               </p>
-              <p className="mt-1 text-lg leading-snug font-bold">Teaching frontend development at JCC</p>
+              <p className="mt-1 text-lg leading-snug font-bold">Developer &amp; instructor at Jasseh Code Camp</p>
             </div>
           </GlowCard>
         </Reveal>
@@ -397,11 +400,24 @@ export function Experience() {
   return (
     <Container label="Experience">
       <div className="grid gap-12 lg:grid-cols-[1fr_1.5fr]">
-        <SectionHeading index="05" label="experience" title="Where I've been building and teaching" />
+        <div>
+          <SectionHeading
+            index="05"
+            label="experience"
+            title="Where I've been building and teaching"
+            description="From student to teaching assistant to full-time developer and instructor at Jasseh Code Camp."
+          />
+        </div>
         <ol className="relative space-y-4 before:absolute before:top-4 before:bottom-4 before:left-[19px] before:w-px before:bg-gradient-to-b before:from-accent before:to-transparent">
           {experience.map((job, i) => (
             <li key={job.title} className="relative pl-14">
-              <span className="absolute top-6 left-3 flex h-4 w-4 items-center justify-center rounded-full border-2 border-accent bg-background" aria-hidden="true" />
+              <span
+                className={cn(
+                  "absolute top-6 left-3 flex h-4 w-4 items-center justify-center rounded-full border-2 border-accent",
+                  i === 0 ? "bg-accent shadow-[0_0_0_4px_var(--glow-a)]" : "bg-background",
+                )}
+                aria-hidden="true"
+              />
               <Reveal delay={i * 80}>
                 <GlowCard className="p-6">
                   <p className="font-mono text-xs text-accent">{job.period}</p>
@@ -415,44 +431,125 @@ export function Experience() {
           ))}
         </ol>
       </div>
+
+      <Reveal className="mt-16">
+        <h3 className="font-mono text-sm text-subtle">education &amp; training/</h3>
+        <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {education.map((item) => (
+            <li key={item.title}>
+              <GlowCard className="h-full p-5">
+                <p className="font-mono text-xs text-accent">{item.period}</p>
+                <p className="mt-2 font-bold">{item.title}</p>
+                <p className="text-sm text-subtle">{item.org}</p>
+                {"note" in item && item.note && (
+                  <p className="mt-2 inline-flex rounded-md bg-accent/10 px-2 py-0.5 text-xs font-semibold text-accent">
+                    {item.note}
+                  </p>
+                )}
+              </GlowCard>
+            </li>
+          ))}
+        </ul>
+      </Reveal>
     </Container>
   );
 }
 
+function Initials({ name }: { name: string }) {
+  return (
+    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#2dd4bf] to-[#6366f1] text-sm font-bold text-white">
+      {name
+        .split(" ")
+        .map((p) => p[0])
+        .join("")
+        .slice(0, 2)}
+    </span>
+  );
+}
+
 export function Testimonials() {
+  const featured = testimonials.find((t) => t.featured);
+  const rest = testimonials.filter((t) => t !== featured);
+
   return (
     <Container id="testimonials" label="Testimonials">
-      <SectionHeading index="06" label="testimonials" title="What students and clients say" align="center" />
+      <SectionHeading
+        index="06"
+        label="testimonials"
+        title="What students say"
+        description="Words from students at Jasseh Code Camp, where I teach as part of the JCC team."
+        align="center"
+      />
       {testimonials.length > 0 ? (
-        <ul className="columns-1 gap-4 space-y-4 md:columns-2 lg:columns-3">
-          {testimonials.map((t, i) => (
-            <li key={t.name} className="break-inside-avoid">
-              <Reveal delay={(i % 3) * 80}>
-                <GlowCard className="p-7">
-                  <Quote className="h-6 w-6 text-accent" aria-hidden="true" />
-                  <blockquote className="mt-4 leading-relaxed">&ldquo;{t.quote}&rdquo;</blockquote>
-                  <div className="mt-6 flex items-center gap-3">
-                    {t.avatar ? (
-                      <Image src={t.avatar} alt="" width={44} height={44} className="h-11 w-11 rounded-full object-cover" />
-                    ) : (
-                      <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-[#2dd4bf] to-[#6366f1] text-sm font-bold text-white">
-                        {t.name
-                          .split(" ")
-                          .map((p) => p[0])
-                          .join("")
-                          .slice(0, 2)}
+        <>
+          {featured && (
+            <Reveal>
+              <figure className="mx-auto max-w-3xl rounded-[1.75rem] bg-gradient-to-br from-[#2dd4bf]/60 via-border to-[#6366f1]/60 p-px">
+                <div className="rounded-[calc(1.75rem-1px)] bg-surface-strong p-8 sm:p-10">
+                  <Quote className="h-8 w-8 text-accent" aria-hidden="true" />
+                  <blockquote className="mt-5 text-xl leading-relaxed font-medium sm:text-2xl">
+                    &ldquo;
+                    {featured.quote.split(profile.firstName).map((part, i, all) => (
+                      <span key={i}>
+                        {part}
+                        {i < all.length - 1 && <mark className="rounded bg-accent/15 px-1 text-accent">{profile.firstName}</mark>}
                       </span>
-                    )}
+                    ))}
+                    &rdquo;
+                  </blockquote>
+                  <figcaption className="mt-7 flex items-center gap-3">
+                    <Initials name={featured.name} />
                     <div>
-                      <p className="font-bold">{t.name}</p>
-                      <p className="text-sm text-subtle">{t.role}</p>
+                      <p className="font-bold">{featured.name}</p>
+                      <p className="text-sm text-subtle">{featured.role}</p>
                     </div>
-                  </div>
-                </GlowCard>
-              </Reveal>
-            </li>
-          ))}
-        </ul>
+                  </figcaption>
+                </div>
+              </figure>
+            </Reveal>
+          )}
+
+          <ul className="mt-6 columns-1 gap-4 space-y-4 md:columns-2 lg:columns-3">
+            {rest.map((t, i) => (
+              <li key={t.name} className="break-inside-avoid">
+                <Reveal delay={(i % 3) * 80}>
+                  <GlowCard className="p-7">
+                    <Quote className="h-5 w-5 text-accent" aria-hidden="true" />
+                    <blockquote className="mt-4 leading-relaxed text-muted">&ldquo;{t.quote}&rdquo;</blockquote>
+                    <div className="mt-6 flex items-center gap-3">
+                      {t.avatar ? (
+                        <Image src={t.avatar} alt="" width={44} height={44} className="h-11 w-11 rounded-full object-cover" />
+                      ) : (
+                        <Initials name={t.name} />
+                      )}
+                      <div>
+                        <p className="font-bold">{t.name}</p>
+                        <p className="text-sm text-subtle">{t.role}</p>
+                      </div>
+                    </div>
+                  </GlowCard>
+                </Reveal>
+              </li>
+            ))}
+          </ul>
+
+          <p className="mt-8 text-center text-sm text-subtle">
+            Published on{" "}
+            <a
+              href={testimonialsSource.href}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="font-semibold text-accent underline underline-offset-4"
+            >
+              {testimonialsSource.label}
+            </a>
+            . Were you one of my students?{" "}
+            <a href="#contact" className="font-semibold text-foreground underline underline-offset-4">
+              Share your story
+            </a>
+            .
+          </p>
+        </>
       ) : (
         <Reveal>
           <GlowCard className="mx-auto max-w-2xl p-10 text-center">

@@ -7,7 +7,8 @@ export const profile = {
   domainLabel: "mamudou.dev",
   role: "Full-Stack Developer & Instructor",
   intro:
-    "I'm Mamudou. I design and build fast, accessible web apps with React, Next.js and Strapi, and I teach frontend development at JCC and in private classes.",
+    "I'm Mamudou, a full-time developer and instructor at Jasseh Code Camp (JCC). I build business management systems for local entrepreneurs with React, Next.js and Strapi, and I teach the next generation of developers.",
+  languages: ["English", "Mandinka", "Wolof"],
   location: "Lamin, The Gambia",
   timeZone: "Africa/Banjul",
   email: "sahomamudou2003@gmail.com",
@@ -38,11 +39,11 @@ export const socials = [
 ] as const;
 
 // Hero numbers. `count` animates up to the value; leave it out for text values.
-// EDIT: add real numbers as you grow, e.g. { count: 50, suffix: "+", label: "Students taught" }
+// Add more as you grow, e.g. { count: 50, suffix: "+", label: "Students taught" }
 export const stats = [
+  { count: 1, suffix: "+", label: "Years teaching at JCC" },
   { count: 4, suffix: "+", label: "Live projects" },
-  { count: 15, suffix: "+", label: "Technologies" },
-  { text: "JCC", label: "Frontend instructor" },
+  { count: 10, suffix: "+", label: "Technologies" },
 ] as const;
 
 export const stack = {
@@ -67,7 +68,7 @@ export const services = [
   {
     title: "Teaching & Mentorship",
     icon: "mentor",
-    text: "Frontend development instructor at JCC, guiding students through hands-on projects, code reviews and mentoring.",
+    text: "Developer and instructor at Jasseh Code Camp: tutorials, one-on-one mentorship and project guidance that bridge classroom learning and real industry work.",
     points: ["Project-based learning", "Code reviews", "Career guidance"],
   },
 ] as const;
@@ -142,26 +143,40 @@ export const projects: Project[] = [
   },
 ];
 
-// EDIT: replace "Current" / "Ongoing" with real dates, e.g. "2024 — Present"
+// From the CV. Newest first.
 export const experience = [
   {
-    period: "Current",
-    title: "Frontend Development Instructor",
-    org: "JCC",
-    text: "Teach HTML, CSS, JavaScript and React. Design lessons around real-world projects, review student code and mentor learners from first page to deployed app.",
+    period: "Jun 2026 — Present",
+    title: "Developer & Instructor",
+    org: "Jasseh Code Camp",
+    text: "Moved into a full-time role after completing my internship. I build and maintain business management systems for local boutique entrepreneurs, mentor students and lead projects that combine modern frontend frameworks with backend solutions.",
   },
   {
-    period: "Ongoing",
-    title: "Private Coding Tutor",
-    org: "Independent",
-    text: "One-to-one and small-group lessons for beginners and developers levelling up their frontend skills.",
+    period: "Dec 2025 — May 2026",
+    title: "CMS Developer (Extended Internship)",
+    org: "Jasseh Code Camp",
+    text: "Internship extended for strong performance. Worked on the JCC software development team across frontend and backend projects, and provided technical support for Boutique, one of JCC's flagship products.",
   },
   {
-    period: "Ongoing",
-    title: "Full-Stack Developer",
-    org: "Independent projects",
-    text: "Build and deploy responsive web apps end to end, and deepen backend skills with Strapi, TypeScript and SQL.",
+    period: "Sep — Nov 2025",
+    title: "Teaching Assistant Intern",
+    org: "Jasseh Code Camp",
+    text: "Ran tutorials and one-on-one mentorship for JCC Academy students and helped with student projects, assignments and academy operations, while finishing my own Frontend Web Development course.",
   },
+];
+
+export const education = [
+  { period: "Jun — Oct 2025", title: "Frontend Web Development, Part 2", org: "Jasseh Code Camp" },
+  { period: "Oct 2024 — Feb 2025", title: "Frontend Web Development, Part 1", org: "Jasseh Code Camp" },
+  { period: "Jun — Sep 2024", title: "Introduction to Computer Science", org: "Jasseh Code Camp" },
+  { period: "Apr — May 2024", title: "Introduction to Technology & Programming", org: "Jasseh Code Camp" },
+  {
+    period: "Nov 2023 — Apr 2024",
+    title: "Diploma in Database Administration",
+    org: "Quest Institute of Technology",
+    note: "Graduated with distinction",
+  },
+  { period: "Apr — Jun 2023", title: "Advanced Diploma in Office Applications", org: "Quest Institute of Technology" },
 ];
 
 export type Testimonial = {
@@ -169,12 +184,57 @@ export type Testimonial = {
   role: string; // e.g. "Student, JCC" or "Private class student"
   quote: string;
   avatar?: string; // optional photo in /public, e.g. "/testimonials/awa.jpg"
+  featured?: boolean; // shown large at the top
 };
 
-// Add real testimonials here. Until then the section invites students to share one.
-// Example:
-// { name: "Awa Jallow", role: "Student, JCC", quote: "Mamudou explains things so clearly..." },
-export const testimonials: Testimonial[] = [];
+// Quotes from JCC students, published at https://www.jassehcodecamp.com/#testimonials
+// (CS Prep: Bridge to Computer Science cohort, thanking the JCC teaching team I'm part of).
+export const testimonialsSource = {
+  label: "jassehcodecamp.com",
+  href: "https://www.jassehcodecamp.com/#testimonials",
+};
+
+const csPrep = "Student · CS Prep: Bridge to Computer Science";
+
+export const testimonials: Testimonial[] = [
+  {
+    name: "Iastou Joof",
+    role: csPrep,
+    quote:
+      "I want to express my sincere appreciation to the whole JCC team, especially Mr Jasseh, Ansu, Adama, Buba, and Mamudou. I really appreciate your efforts, patience, dedication, and encouragement. It was a great experience, and I've learned a lot. Y'all made learning skills easier.",
+    featured: true,
+  },
+  {
+    name: "Fatoumatta Sanyang",
+    role: csPrep,
+    quote:
+      "I want to appreciate and thank JCC from the bottom of my heart. You've been a guide, motivators, and a constant source of encouragement. Your patience and kindness gave me confidence to keep trying even when things felt difficult. Because of JCC, I've grown not just in knowledge, but as a person.",
+  },
+  {
+    name: "Ayoub Phatty",
+    role: csPrep,
+    quote:
+      "I want to say a big thank you to the entire JCC team for making this camp such a great experience. Even though I couldn't attend regularly because of school, I've still been learning a lot on my own, from Python to MySQL, even building my own timetable app. This camp gave me the motivation to keep going.",
+  },
+  {
+    name: "Naffie Cham",
+    role: csPrep,
+    quote:
+      "I wanted to express my heartfelt gratitude for your guidance and support throughout the program. Your expertise, patience, and enthusiasm have made a significant impact on my learning journey. I'm truly grateful for the knowledge and skills I have gathered, all thanks to JCC.",
+  },
+  {
+    name: "Marvelous",
+    role: csPrep,
+    quote:
+      "Throughout the learning period, JCC was full of learning, kindness, and encouragement. You made tech feel exciting and possible, and I've used what I learned in my school projects. I've grown in confidence and skills, and I'm proud to carry those lessons forward.",
+  },
+  {
+    name: "Iastou Jallow",
+    role: csPrep,
+    quote:
+      "I want to sincerely thank the entire JCC team for everything they have done for me. From the knowledge I gained to the values I learned, I am truly grateful. Thank you for your patience, guidance, and support. This place will always be part of my journey.",
+  },
+];
 
 // EDIT: adjust answers to match how you work
 export const faq = [
