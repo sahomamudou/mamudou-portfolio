@@ -18,6 +18,7 @@ import { CopyButton, GlowCard, LocalTime } from "@/components/interactive";
 import { Reveal } from "@/components/reveal";
 import { SocialLinks } from "@/components/social-links";
 import {
+  boutique,
   classes,
   education,
   experience,
@@ -302,12 +303,59 @@ function TechList({ items }: { items: string[] }) {
   );
 }
 
+function BoutiqueCaseStudy() {
+  return (
+    <Reveal>
+      <div className="rounded-[2rem] bg-gradient-to-br from-[#2dd4bf]/60 via-border to-[#6366f1]/60 p-px">
+        <div className="rounded-[calc(2rem-1px)] bg-surface-strong p-6 sm:p-8 lg:p-10">
+          <div className="grid gap-8 lg:grid-cols-[1.3fr_1fr] lg:items-end">
+            <div>
+            <p className="font-mono text-xs text-accent">Case study · Field work</p>
+            <h3 className="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">{boutique.title}</h3>
+            <p className="mt-1 text-sm font-semibold text-subtle">{boutique.subtitle}</p>
+            <p className="mt-5 leading-relaxed text-muted">{boutique.text}</p>
+            </div>
+            <ul className="space-y-2.5 lg:pb-1">
+              {boutique.points.map((point) => (
+                <li key={point} className="flex items-start gap-2.5 text-sm font-medium">
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
+                  {point}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <ul className="mt-8 grid auto-rows-[150px] grid-cols-2 gap-3 sm:auto-rows-[200px] md:grid-cols-4 lg:auto-rows-[230px]" aria-label="Photos from Boutique deployments">
+            {boutique.photos.map((photo) => (
+              <li
+                key={photo.src}
+                className={cn("group/photo relative overflow-hidden rounded-2xl bg-surface", photo.span, !photo.span && "max-md:col-span-1")}
+              >
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  fill
+                  sizes="(min-width: 1024px) 560px, 50vw"
+                  className="object-cover transition-transform duration-700 group-hover/photo:scale-105 motion-reduce:transition-none"
+                />
+                <span className="absolute bottom-2 left-2 rounded-lg bg-black/70 px-2.5 py-1 text-xs font-semibold text-white">
+                  {photo.caption}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </Reveal>
+  );
+}
+
 export function Work() {
   const [featured, ...rest] = projects;
   return (
     <Container id="work" label="Work">
       <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-        <SectionHeading index="04" label="work" title="Selected projects" description="Things I've built and shipped. Every one is live, so click through and try them." />
+        <SectionHeading index="04" label="work" title="Selected work" description="Real-world systems I support in the field, and projects I've built and shipped." />
         <Reveal className="mb-12">
           <a
             href={github}
@@ -321,6 +369,11 @@ export function Work() {
         </Reveal>
       </div>
 
+      <BoutiqueCaseStudy />
+
+      <Reveal className="mt-16 mb-6">
+        <h3 className="font-mono text-sm text-subtle">personal projects/</h3>
+      </Reveal>
       <Reveal>
         <GlowCard className="group grid overflow-hidden lg:grid-cols-[1.4fr_1fr]">
           <div className="relative aspect-[16/10] overflow-hidden border-b border-border lg:aspect-auto lg:min-h-[380px] lg:border-r lg:border-b-0">

@@ -97,6 +97,27 @@ export const classes = {
   ],
 };
 
+// Real-world work at Jasseh Code Camp, shown above the personal projects
+export const boutique = {
+  title: "Boutique",
+  subtitle: "Business management system · Jasseh Code Camp",
+  text: "Boutique is JCC's business management system for local shops. I build and maintain it, and I take it into the field: installing it on-site, setting up point-of-sale and attendance hardware, training owners and staff, and supporting supermarkets, pharmacies and beauty stores after launch.",
+  points: [
+    "On-site installation and configuration",
+    "POS and biometric attendance device setup",
+    "Training shop owners and staff",
+    "Ongoing technical support",
+  ],
+  photos: [
+    { src: "/photos/boutique/team.jpg", alt: "Mamudou with a client team after setting up Boutique", caption: "Client onboarding", span: "col-span-2 row-span-2" },
+    { src: "/photos/boutique/training.jpg", alt: "Mamudou training a staff member at a shop checkout", caption: "Staff training", span: "row-span-2" },
+    { src: "/photos/boutique/attendance-device.jpg", alt: "Mamudou installing a biometric attendance device", caption: "Hardware setup", span: "row-span-2" },
+    { src: "/photos/boutique/supermarket.jpg", alt: "Mamudou working on Boutique inside a supermarket", caption: "On-site support", span: "col-span-2" },
+    { src: "/photos/boutique/group-training.jpg", alt: "Mamudou walking a group of staff through the system", caption: "Team walkthrough", span: "" },
+    { src: "/photos/boutique/pos-training.jpg", alt: "Mamudou showing a shop owner the point-of-sale screen", caption: "POS training", span: "" },
+  ],
+};
+
 export type Project = {
   title: string;
   category: string;
