@@ -86,7 +86,7 @@ export function SiteHeader() {
             href="#contact"
             className="hidden rounded-xl bg-primary px-4 py-2.5 text-sm font-bold text-primary-ink transition hover:brightness-110 sm:inline-block"
           >
-            Hire me
+            Let&apos;s talk
           </a>
           <button
             type="button"
@@ -126,7 +126,7 @@ export function SiteHeader() {
               onClick={() => setOpen(false)}
               className="block rounded-xl bg-primary py-3 text-center font-bold text-primary-ink"
             >
-              Hire me
+              Let&apos;s talk
             </a>
           </li>
         </ul>
