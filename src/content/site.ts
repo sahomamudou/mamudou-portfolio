@@ -148,19 +148,19 @@ export const projects: Project[] = [
 // From the CV. Newest first.
 export const experience = [
   {
-    period: "Jun 2026 — Present",
+    period: "2026 — Now",
     title: "Developer & Instructor",
     org: "Jasseh Code Camp",
     text: "Moved into a full-time role after completing my internship. I build and maintain business management systems for local boutique entrepreneurs, mentor students and lead projects that combine modern frontend frameworks with backend solutions.",
   },
   {
-    period: "Dec 2025 — May 2026",
+    period: "2025 — 2026",
     title: "CMS Developer (Extended Internship)",
     org: "Jasseh Code Camp",
     text: "Internship extended for strong performance. Worked on the JCC software development team across frontend and backend projects, and provided technical support for Boutique, one of JCC's flagship products.",
   },
   {
-    period: "Sep — Nov 2025",
+    period: "2025",
     title: "Teaching Assistant Intern",
     org: "Jasseh Code Camp",
     text: "Ran tutorials and one-on-one mentorship for JCC Academy students and helped with student projects, assignments and academy operations, while finishing my own Frontend Web Development course.",
@@ -168,17 +168,20 @@ export const experience = [
 ];
 
 export const education = [
-  { period: "Jun — Oct 2025", title: "Frontend Web Development, Part 2", org: "Jasseh Code Camp" },
-  { period: "Oct 2024 — Feb 2025", title: "Frontend Web Development, Part 1", org: "Jasseh Code Camp" },
-  { period: "Jun — Sep 2024", title: "Introduction to Computer Science", org: "Jasseh Code Camp" },
-  { period: "Apr — May 2024", title: "Introduction to Technology & Programming", org: "Jasseh Code Camp" },
   {
-    period: "Nov 2023 — Apr 2024",
-    title: "Diploma in Database Administration",
+    org: "Jasseh Code Camp",
+    title: "Technical training",
+    items: [
+      "Frontend Web Development, Parts 1 & 2",
+      "Introduction to Computer Science",
+      "Introduction to Technology & Programming",
+    ],
+  },
+  {
     org: "Quest Institute of Technology",
+    title: "Diploma in Database Administration",
     note: "Graduated with distinction",
   },
-  { period: "Apr — Jun 2023", title: "Advanced Diploma in Office Applications", org: "Quest Institute of Technology" },
 ];
 
 export type Testimonial = {

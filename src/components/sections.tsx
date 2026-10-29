@@ -434,15 +434,24 @@ export function Experience() {
 
       <Reveal className="mt-16">
         <h3 className="font-mono text-sm text-subtle">education &amp; training/</h3>
-        <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-4 grid gap-4 md:grid-cols-2">
           {education.map((item) => (
             <li key={item.title}>
-              <GlowCard className="h-full p-5">
-                <p className="font-mono text-xs text-accent">{item.period}</p>
-                <p className="mt-2 font-bold">{item.title}</p>
-                <p className="text-sm text-subtle">{item.org}</p>
-                {"note" in item && item.note && (
-                  <p className="mt-2 inline-flex rounded-md bg-accent/10 px-2 py-0.5 text-xs font-semibold text-accent">
+              <GlowCard className="h-full p-6">
+                <p className="font-mono text-xs text-accent">{item.org}</p>
+                <p className="mt-2 text-lg font-bold">{item.title}</p>
+                {item.items && (
+                  <ul className="mt-3 space-y-1.5 text-sm text-muted">
+                    {item.items.map((course) => (
+                      <li key={course} className="flex items-start gap-2">
+                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
+                        {course}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                {item.note && (
+                  <p className="mt-3 inline-flex rounded-md bg-accent/10 px-2 py-0.5 text-xs font-semibold text-accent">
                     {item.note}
                   </p>
                 )}
