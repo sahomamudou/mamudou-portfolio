@@ -486,7 +486,7 @@ export function Testimonials() {
         index="06"
         label="testimonials"
         title="What students say"
-        description="Words from students at Jasseh Code Camp, where I teach as part of the JCC team."
+        description="Words from students of JCC's CS Prep: Bridge to Computer Science program, where I teach as part of the JCC team."
         align="center"
       />
       {testimonials.length > 0 ? (
@@ -518,29 +518,43 @@ export function Testimonials() {
             </Reveal>
           )}
 
-          <ul className="mt-6 columns-1 gap-4 space-y-4 md:columns-2 lg:columns-3">
-            {rest.map((t, i) => (
-              <li key={t.name} className="break-inside-avoid">
-                <Reveal delay={(i % 3) * 80}>
-                  <GlowCard className="p-7">
-                    <Quote className="h-5 w-5 text-accent" aria-hidden="true" />
-                    <blockquote className="mt-4 leading-relaxed text-muted">&ldquo;{t.quote}&rdquo;</blockquote>
-                    <div className="mt-6 flex items-center gap-3">
-                      {t.avatar ? (
-                        <Image src={t.avatar} alt="" width={44} height={44} className="h-11 w-11 rounded-full object-cover" />
-                      ) : (
-                        <Initials name={t.name} />
-                      )}
-                      <div>
-                        <p className="font-bold">{t.name}</p>
-                        <p className="text-sm text-subtle">{t.role}</p>
-                      </div>
-                    </div>
-                  </GlowCard>
-                </Reveal>
-              </li>
-            ))}
-          </ul>
+          {/*
+            Scrolling row of equal-height cards. The list is rendered twice so the loop is seamless;
+            hovering pauses it. With reduced motion it becomes a plain swipeable row.
+          */}
+          <Reveal className="group/marquee relative -mx-4 mt-8 overflow-hidden py-2 [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)] motion-reduce:overflow-x-auto sm:-mx-6">
+            <div className="flex w-max animate-marquee gap-4 px-4 group-hover/marquee:[animation-play-state:paused] motion-reduce:animate-none sm:px-6">
+              {[0, 1].map((copy) => (
+                <ul
+                  key={copy}
+                  aria-hidden={copy === 1 ? true : undefined}
+                  className={cn("flex gap-4", copy === 1 && "motion-reduce:hidden")}
+                >
+                  {rest.map((t) => (
+                    <li key={t.name} className="flex w-[300px] sm:w-[360px]">
+                      <GlowCard className="flex w-full flex-col p-6">
+                        <Quote className="h-5 w-5 text-accent" aria-hidden="true" />
+                        <blockquote className="mt-4 flex-1 text-[15px] leading-relaxed text-muted">
+                          &ldquo;{t.quote}&rdquo;
+                        </blockquote>
+                        <div className="mt-6 flex items-center gap-3 border-t border-border pt-5">
+                          {t.avatar ? (
+                            <Image src={t.avatar} alt="" width={44} height={44} className="h-11 w-11 rounded-full object-cover" />
+                          ) : (
+                            <Initials name={t.name} />
+                          )}
+                          <div>
+                            <p className="font-bold">{t.name}</p>
+                            <p className="text-sm text-subtle">{t.role}</p>
+                          </div>
+                        </div>
+                      </GlowCard>
+                    </li>
+                  ))}
+                </ul>
+              ))}
+            </div>
+          </Reveal>
 
           <p className="mt-8 text-center text-sm text-subtle">
             Published on{" "}

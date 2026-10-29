@@ -199,7 +199,7 @@ export const testimonialsSource = {
   href: "https://www.jassehcodecamp.com/#testimonials",
 };
 
-const csPrep = "Student · CS Prep: Bridge to Computer Science";
+const csPrep = "Student, JCC";
 
 export const testimonials: Testimonial[] = [
   {

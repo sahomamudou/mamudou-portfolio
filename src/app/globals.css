@@ -65,6 +65,7 @@
   --animate-drift-slow: drift 26s ease-in-out infinite alternate-reverse;
   --animate-float: float 6s ease-in-out infinite;
   --animate-blink: blink 1s steps(1) infinite;
+  --animate-marquee: marquee 60s linear infinite;
 
   @keyframes drift {
     from {
@@ -81,6 +82,11 @@
     }
     50% {
       transform: translateY(-8px);
+    }
+  }
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
     }
   }
   @keyframes blink {
