@@ -314,6 +314,24 @@ function BoutiqueCaseStudy() {
             <h3 className="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">{boutique.title}</h3>
             <p className="mt-1 text-sm font-semibold text-subtle">{boutique.subtitle}</p>
             <p className="mt-5 leading-relaxed text-muted">{boutique.text}</p>
+            <div className="mt-6 flex flex-wrap items-center gap-x-8 gap-y-4">
+              <dl className="flex gap-8">
+                {boutique.stats.map((stat) => (
+                  <div key={stat.label} className="flex flex-col-reverse">
+                    <dt className="text-xs text-subtle">{stat.label}</dt>
+                    <dd className="text-2xl font-extrabold tracking-tight">{stat.value}</dd>
+                  </div>
+                ))}
+              </dl>
+              <a
+                href={boutique.href}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="inline-flex items-center gap-1.5 rounded-xl bg-foreground px-4 py-2.5 text-sm font-bold text-background transition hover:opacity-90"
+              >
+                Visit boutique.gm <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+              </a>
+            </div>
             </div>
             <ul className="space-y-2.5 lg:pb-1">
               {boutique.points.map((point) => (
@@ -325,7 +343,27 @@ function BoutiqueCaseStudy() {
             </ul>
           </div>
 
-          <ul className="mt-8 grid auto-rows-[150px] grid-cols-2 gap-3 sm:auto-rows-[200px] md:grid-cols-4 lg:auto-rows-[230px]" aria-label="Photos from Boutique deployments">
+          {/* Product screenshot in a browser frame */}
+          <div className="mt-8 overflow-hidden rounded-2xl border border-border bg-surface shadow-xl shadow-black/10">
+            <div className="flex items-center gap-2 border-b border-border bg-surface px-4 py-2.5">
+              <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
+              <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
+              <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
+              <span className="ml-3 truncate rounded-md bg-background px-3 py-0.5 font-mono text-xs text-subtle">
+                demo.boutique.gm/login
+              </span>
+            </div>
+            <Image
+              src={boutique.screenshot.src}
+              alt={boutique.screenshot.alt}
+              width={boutique.screenshot.width}
+              height={boutique.screenshot.height}
+              sizes="(min-width: 1280px) 1100px, 100vw"
+              className="h-auto w-full"
+            />
+          </div>
+
+          <ul className="mt-3 grid auto-rows-[150px] grid-cols-2 gap-3 sm:auto-rows-[200px] md:grid-cols-4 lg:auto-rows-[230px]" aria-label="Photos from Boutique deployments">
             {boutique.photos.map((photo) => (
               <li
                 key={photo.src}

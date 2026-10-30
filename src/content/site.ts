@@ -45,8 +45,8 @@ export type Stat = { label: string } & ({ count: number; suffix?: string } | { t
 
 export const stats: Stat[] = [
   { count: 1, suffix: "+", label: "Years teaching at JCC" },
+  { count: 10, suffix: "+", label: "Shops onboarded" },
   { count: 4, suffix: "+", label: "Live projects" },
-  { count: 10, suffix: "+", label: "Technologies" },
 ];
 
 export const stack = {
@@ -100,8 +100,19 @@ export const classes = {
 
 // Real-world work at JassehCodeCamp, shown above the personal projects
 export const boutique = {
-  title: "Boutique",
+  title: "Boutique.gm",
   subtitle: "Business management system · JassehCodeCamp",
+  href: "https://boutique.gm",
+  screenshot: {
+    src: "/photos/boutique/app-login.jpg",
+    alt: "Boutique.gm sign-in screen: One platform to run your business. Sales, stock, and staff together in one place.",
+    width: 1918,
+    height: 875,
+  },
+  stats: [
+    { value: "10+", label: "Shops onboarded" },
+    { value: "3", label: "Languages: EN · FR · PT" },
+  ],
   text: "Boutique is a business management system built by the JCC team for local shops of every kind. As part of that team, I help develop and maintain it, and I take it into the field: installing it on-site, setting up point-of-sale and attendance hardware, training owners and staff, and supporting shops after launch.",
   points: [
     "On-site installation and configuration",
