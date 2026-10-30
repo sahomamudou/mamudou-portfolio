@@ -350,7 +350,7 @@ function BoutiqueCaseStudy() {
               <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
               <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
               <span className="ml-3 truncate rounded-md bg-background px-3 py-0.5 font-mono text-xs text-subtle">
-                demo.boutique.gm/login
+                demo.boutique.gm/dashboard
               </span>
             </div>
             <Image

@@ -104,10 +104,10 @@ export const boutique = {
   subtitle: "Business management system · JassehCodeCamp",
   href: "https://boutique.gm",
   screenshot: {
-    src: "/photos/boutique/app-login.jpg",
-    alt: "Boutique.gm sign-in screen: One platform to run your business. Sales, stock, and staff together in one place.",
-    width: 1918,
-    height: 875,
+    src: "/photos/boutique/app-dashboard.jpg",
+    alt: "Boutique.gm dashboard with sales today, low stock, stock value and out-of-stock cards, and navigation for items, inventory, sales, customers, suppliers, purchases and transfers.",
+    width: 1893,
+    height: 865,
   },
   stats: [
     { value: "10+", label: "Shops onboarded" },
