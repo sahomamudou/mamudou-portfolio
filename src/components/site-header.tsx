@@ -48,8 +48,8 @@ export function SiteHeader() {
         className="mx-auto flex max-w-6xl items-center justify-between gap-4 rounded-2xl border border-border bg-surface-strong/70 px-4 py-2.5 shadow-lg shadow-black/5 backdrop-blur-xl sm:px-5"
       >
         <a href="#top" className="text-[17px] font-extrabold tracking-tight">
-          {profile.domainLabel.split(".")[0]}
-          <span className="text-accent">.{profile.domainLabel.split(".")[1]}</span>
+          {profile.logo}
+          <span className="text-accent">.</span>
         </a>
 
         <ul className="hidden items-center gap-1 lg:flex">

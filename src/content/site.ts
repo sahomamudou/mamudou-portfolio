@@ -4,7 +4,8 @@
 export const profile = {
   name: "Mamudou Saho",
   firstName: "Mamudou",
-  domainLabel: "mamudou.dev",
+  // Logo text, shown as "mamudou." Change to e.g. "mamudou.dev" once you own that domain.
+  logo: "mamudou",
   role: "Web Developer & Instructor",
   intro:
     "I'm Mamudou, a full-time developer and instructor at JassehCodeCamp (JCC). I work on Boutique, the JCC team's business management system for local shops, build web apps with React, Next.js and Strapi, and teach the next generation of developers.",

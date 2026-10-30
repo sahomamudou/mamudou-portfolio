@@ -26,8 +26,8 @@ export default function OpengraphImage() {
       >
         <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", padding: 72, flex: 1 }}>
           <div style={{ display: "flex", fontSize: 32, fontWeight: 700 }}>
-            {profile.domainLabel.split(".")[0]}
-            <span style={{ color: "#5eead4" }}>.{profile.domainLabel.split(".")[1]}</span>
+            {profile.logo}
+            <span style={{ color: "#5eead4" }}>.</span>
           </div>
           <div style={{ display: "flex", flexDirection: "column" }}>
             <div style={{ fontSize: 68, fontWeight: 800, letterSpacing: -2, lineHeight: 1.05 }}>{profile.name}</div>
