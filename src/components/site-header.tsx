@@ -7,10 +7,13 @@ import { ThemeToggle } from "@/components/theme";
 import { nav, profile } from "@/content/site";
 import { cn } from "@/lib/utils";
 
-function useActiveSection() {
+/** Section currently in view, and whether the page has scrolled away from the top. */
+function useScrollState() {
   const [active, setActive] = useState<string>("");
+  const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const update = () => {
+      setScrolled(window.scrollY > 8);
       const marker = window.scrollY + window.innerHeight * 0.35;
       const atBottom =
         window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
@@ -29,11 +32,11 @@ function useActiveSection() {
       window.removeEventListener("resize", update);
     };
   }, []);
-  return active;
+  return { active, scrolled };
 }
 
 export function SiteHeader() {
-  const active = useActiveSection();
+  const { active, scrolled } = useScrollState();
   const [open, setOpen] = useState(false);
   const isMac = useSyncExternalStore(
     () => () => {},
@@ -42,11 +45,13 @@ export function SiteHeader() {
   );
 
   return (
-    <header className="sticky top-0 z-40 px-4 pt-4 sm:px-6">
-      <nav
-        aria-label="Main"
-        className="mx-auto flex max-w-6xl items-center justify-between gap-4 rounded-2xl border border-border bg-surface-strong/70 px-4 py-2.5 shadow-lg shadow-black/5 backdrop-blur-xl sm:px-5"
-      >
+    <header
+      className={cn(
+        "sticky top-0 z-40 px-4 transition-colors duration-300 sm:px-6",
+        scrolled || open ? "bg-background/80 backdrop-blur-xl" : "bg-transparent",
+      )}
+    >
+      <nav aria-label="Main" className="mx-auto flex max-w-6xl items-center justify-between gap-4 py-4">
         <a href="#top" className="text-[17px] font-extrabold tracking-tight">
           {profile.logo}
           <span className="text-accent">.</span>
@@ -104,7 +109,7 @@ export function SiteHeader() {
       {open && (
         <ul
           id="mobile-nav"
-          className="mx-auto mt-2 max-w-6xl space-y-1 rounded-2xl border border-border bg-surface-strong/95 p-2 backdrop-blur-xl lg:hidden"
+          className="mx-auto max-w-6xl space-y-1 pb-4 lg:hidden"
         >
           {nav.map(({ id, label }) => (
             <li key={id}>
