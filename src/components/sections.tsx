@@ -430,7 +430,7 @@ export function Work() {
               alt={`${featured.title} screenshot`}
               fill
               sizes="(min-width: 1024px) 660px, 100vw"
-              className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+              className="object-cover object-left-top transition-transform duration-700 group-hover:scale-[1.03]"
             />
           </div>
           <div className="flex flex-col p-8">
