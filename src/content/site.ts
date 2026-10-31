@@ -171,11 +171,11 @@ export const projects: Project[] = [
     category: "Website · JCC team project",
     role: "Built the CMS",
     description:
-      "Website for the Federation of ECOWAS Licensed Customs Brokers Associations, covering news, events, membership, resources and a gallery in several languages. I built the CMS behind it.",
+      "Website for the Federation of ECOWAS Licensed Customs Brokers Associations, covering news, events, membership, resources and a gallery in several languages. I built the CMS behind it, and the project has been delivered and handed over to the client.",
     image: "/projects/felcba.jpg",
     href: "https://www.felcbafacoda.org/eng",
     linkLabel: "Visit site",
-    tech: ["Next.js", "CMS", "Multilingual"],
+    tech: ["Next.js", "CMS", "Multilingual", "Delivered"],
   },
   {
     title: "Bantaba Digital",
