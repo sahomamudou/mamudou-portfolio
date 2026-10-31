@@ -136,8 +136,10 @@ export type Project = {
   role: string; // what I did, shown as a badge (be precise for team projects)
   description: string;
   image: string;
-  href: string;
-  linkLabel: string;
+  // Leave href out for private apps (e.g. behind a client login): the card shows `privateNote` instead
+  href?: string;
+  linkLabel?: string;
+  privateNote?: string;
   repo?: string;
   tech: string[];
 };
@@ -151,8 +153,7 @@ export const projects: Project[] = [
     description:
       "A project, money and site tracking system for Nixtone Architects +. It follows contract value, client payments, workers, materials and site expenses across active projects, and shows exactly where the money went against each budget.",
     image: "/projects/nixtone-tracker.jpg",
-    href: "https://nixtone-tracker.vercel.app/",
-    linkLabel: "Visit app",
+    privateNote: "Private client app · shown with sample data",
     tech: ["Next.js", "Dashboard", "Budget tracking"],
   },
   {

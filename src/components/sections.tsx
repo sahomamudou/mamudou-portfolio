@@ -4,6 +4,7 @@ import {
   ArrowUpRight,
   Check,
   GraduationCap,
+  Lock,
   MapPin,
   Monitor,
   Plus,
@@ -441,15 +442,22 @@ export function Work() {
             <div className="mt-6">
               <TechList items={featured.tech} />
             </div>
-            <div className="mt-auto flex gap-3 pt-8">
-              <a
-                href={featured.href}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="inline-flex items-center gap-2 rounded-xl bg-foreground px-5 py-3 text-sm font-bold text-background"
-              >
-                {featured.linkLabel} <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-              </a>
+            <div className="mt-auto flex flex-wrap items-center gap-3 pt-8">
+              {featured.href ? (
+                <a
+                  href={featured.href}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="inline-flex items-center gap-2 rounded-xl bg-foreground px-5 py-3 text-sm font-bold text-background"
+                >
+                  {featured.linkLabel} <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                </a>
+              ) : (
+                <p className="inline-flex items-center gap-2 rounded-xl border border-border px-4 py-2.5 text-sm font-semibold text-muted">
+                  <Lock className="h-4 w-4" aria-hidden="true" />
+                  {featured.privateNote}
+                </p>
+              )}
               {featured.repo && (
                 <a href={featured.repo} target="_blank" rel="noreferrer noopener" className="inline-flex items-center gap-2 rounded-xl border border-border px-5 py-3 text-sm font-bold">
                   <Github className="h-4 w-4" aria-hidden="true" /> Code
