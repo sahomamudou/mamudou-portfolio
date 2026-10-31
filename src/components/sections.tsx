@@ -388,6 +388,16 @@ function BoutiqueCaseStudy() {
   );
 }
 
+function RoleBadge({ role }: { role: string }) {
+  return (
+    <p className="mt-2 inline-flex w-fit items-center gap-1.5 rounded-md border border-border px-2 py-0.5 text-xs font-semibold text-muted">
+      <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
+      <span className="sr-only">My role: </span>
+      {role}
+    </p>
+  );
+}
+
 export function Work() {
   const [featured, ...rest] = projects;
   return (
@@ -410,11 +420,11 @@ export function Work() {
       <BoutiqueCaseStudy />
 
       <Reveal className="mt-16 mb-6">
-        <h3 className="font-mono text-sm text-subtle">personal projects/</h3>
+        <h3 className="font-mono text-sm text-subtle">projects/</h3>
       </Reveal>
       <Reveal>
         <GlowCard className="group grid overflow-hidden lg:grid-cols-[1.4fr_1fr]">
-          <div className="relative aspect-[16/10] overflow-hidden border-b border-border lg:aspect-auto lg:min-h-[380px] lg:border-r lg:border-b-0">
+          <div className="relative aspect-[2.17/1] overflow-hidden border-b border-border lg:aspect-auto lg:min-h-[380px] lg:border-r lg:border-b-0">
             <Image
               src={featured.image}
               alt={`${featured.title} screenshot`}
@@ -426,6 +436,7 @@ export function Work() {
           <div className="flex flex-col p-8">
             <p className="font-mono text-xs text-accent">Featured · {featured.category}</p>
             <h3 className="mt-3 text-3xl font-extrabold tracking-tight">{featured.title}</h3>
+            <RoleBadge role={featured.role} />
             <p className="mt-3 leading-relaxed text-muted">{featured.description}</p>
             <div className="mt-6">
               <TechList items={featured.tech} />
@@ -437,7 +448,7 @@ export function Work() {
                 rel="noreferrer noopener"
                 className="inline-flex items-center gap-2 rounded-xl bg-foreground px-5 py-3 text-sm font-bold text-background"
               >
-                Live demo <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                {featured.linkLabel} <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
               </a>
               {featured.repo && (
                 <a href={featured.repo} target="_blank" rel="noreferrer noopener" className="inline-flex items-center gap-2 rounded-xl border border-border px-5 py-3 text-sm font-bold">
@@ -455,10 +466,10 @@ export function Work() {
             <Reveal delay={i * 80} className="h-full">
               <a href={project.href} target="_blank" rel="noreferrer noopener" className="group block h-full">
                 <GlowCard className="flex h-full flex-col overflow-hidden transition-colors group-hover:border-accent/40">
-                  <div className="relative aspect-[16/10] overflow-hidden border-b border-border">
+                  <div className="relative aspect-[2.15/1] overflow-hidden border-b border-border">
                     <Image
                       src={project.image}
-                      alt=""
+                      alt={`${project.title} screenshot`}
                       fill
                       sizes="(min-width: 768px) 380px, 100vw"
                       className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
@@ -469,6 +480,7 @@ export function Work() {
                       <div>
                         <p className="font-mono text-xs text-subtle">{project.category}</p>
                         <h3 className="mt-1 text-lg font-bold">{project.title}</h3>
+                        <RoleBadge role={project.role} />
                       </div>
                       <ArrowUpRight className="h-5 w-5 shrink-0 text-subtle transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent" aria-hidden="true" />
                     </div>

@@ -133,9 +133,11 @@ export const boutique = {
 export type Project = {
   title: string;
   category: string;
+  role: string; // what I did, shown as a badge (be precise for team projects)
   description: string;
   image: string;
   href: string;
+  linkLabel: string;
   repo?: string;
   tech: string[];
 };
@@ -143,38 +145,48 @@ export type Project = {
 // The first project is featured as the large card
 export const projects: Project[] = [
   {
-    title: "GitHub User Finder",
-    category: "Web App",
+    title: "Nixtone Tracker",
+    category: "Web app · Client project",
+    role: "Designed & built",
     description:
-      "Search any GitHub user and browse their profile and public repositories, with data fetched live from the GitHub REST API.",
-    image: "/github-user-finder.png",
-    href: "https://github-user-finder-orcin.vercel.app/",
-    tech: ["React", "GitHub API", "Tailwind CSS", "Vite"],
+      "A project, money and site tracking system for Nixtone Architects +. It follows contract value, client payments, workers, materials and site expenses across active projects, and shows exactly where the money went against each budget.",
+    image: "/projects/nixtone-tracker.jpg",
+    href: "https://nixtone-tracker.vercel.app/",
+    linkLabel: "Visit app",
+    tech: ["Next.js", "Dashboard", "Budget tracking"],
   },
   {
-    title: "Product List & Cart",
-    category: "E-commerce UI",
+    title: "SAITAF Travel & Tours",
+    category: "Website · JCC team project",
+    role: "Built the CMS",
     description:
-      "A responsive product listing with add-to-cart, quantity controls and an order summary.",
-    image: "/desktop-design-empty.jpg",
-    href: "https://jcc-product-list-card.vercel.app/",
-    tech: ["React", "Tailwind CSS"],
+      "Website for a Gambian Umrah and travel agency: packages, destinations, air tickets, hotels and visa services. I built the content management system the agency uses to keep it up to date.",
+    image: "/projects/saitaf.jpg",
+    href: "https://www.saitaftravels.com/",
+    linkLabel: "Visit site",
+    tech: ["Next.js", "CMS"],
   },
   {
-    title: "Browser Extension Landing Page",
-    category: "Landing Page",
-    description: "A mobile-first, fully responsive marketing page with clear calls to action.",
-    image: "/desktop-design-light.jpg",
-    href: "https://browser-extension-three.vercel.app/",
-    tech: ["React", "Tailwind CSS"],
+    title: "FELCBA",
+    category: "Website · JCC team project",
+    role: "Built the CMS",
+    description:
+      "Website for the Federation of ECOWAS Licensed Customs Brokers Associations, covering news, events, membership, resources and a gallery in several languages. I built the CMS behind it.",
+    image: "/projects/felcba.jpg",
+    href: "https://www.felcbafacoda.org/eng",
+    linkLabel: "Visit site",
+    tech: ["Next.js", "CMS", "Multilingual"],
   },
   {
-    title: "Interactive Rating Card",
-    category: "UI Component",
-    description: "An interactive rating component with a thank-you confirmation state.",
-    image: "/interactive-card.png",
-    href: "https://interactive-rating-card-one.vercel.app/",
-    tech: ["React", "Tailwind CSS"],
+    title: "Bantaba Digital",
+    category: "Web studio · Founder",
+    role: "My studio, in progress",
+    description:
+      "My own web studio, designing and building modern websites and simple management systems for Gambian businesses, from Kotu to Brikama.",
+    image: "/projects/bantaba-digital.jpg",
+    href: "https://bantaba-digital.vercel.app/",
+    linkLabel: "Visit site",
+    tech: ["Astro", "Web design"],
   },
 ];
 
